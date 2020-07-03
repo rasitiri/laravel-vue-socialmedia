@@ -1,21 +1,20 @@
 <template>
   <div>
-    <h1>Home</h1>
-    <h2>Status: {{status}}</h2>
+    <publish></publish>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import Publish from "./Publish";
 export default {
-  computed:{
-    status(){
-      return this.$store.getters.authStatus
-    }
+  components: {
+    Publish
+  },
+  created() {
+    this.$store.dispatch("user");
   }
-}
+};
 </script>
 
 <style>
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
     <div class="container-fluid">
       <router-link tag="a" class="navbar-brand" to="/">Navbar</router-link>
       <button
@@ -23,11 +23,8 @@
           </li>
         </ul>
         <ul v-if="isLoggedIn" class="navbar-nav ml-auto mb-2 mb-lg-0">
-          <li>
-            <a class="nav-link">Welcome</a>
-          </li>
-          <li>
-            <a class="nav-link">User</a>
+          <li class="nav-item">
+            <a class="nav-link">{{userEmail}}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" @click="logout">Logout</a>
@@ -43,11 +40,16 @@ export default {
   computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
+    },
+    userEmail() {
+      return this.$store.getters.getUser.email;
     }
   },
   methods: {
     logout() {
-      this.$store.dispatch("logout");
+      this.$store
+        .dispatch("logout")
+        .then(() => setTimeout(() => this.$router.push("/login"), 100));
     }
   }
 };

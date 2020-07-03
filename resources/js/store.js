@@ -6,12 +6,14 @@ Vue.use(Vuex);
 
 const state = {
     status: "",
-    token: localStorage.getItem("token") || ""
+    token: localStorage.getItem("token") || "",
+    user: {}
 };
 
 const getters = {
     isLoggedIn: state => !!state.token,
-    authStatus: state => state.status
+    authStatus: state => state.status,
+    getUser: state => state.user
 };
 
 const mutations = {
@@ -28,6 +30,9 @@ const mutations = {
     logout(state) {
         state.status = "";
         state.token = "";
+    },
+    user_info(state, user) {
+        state.user = user;
     }
 };
 
@@ -88,6 +93,23 @@ const actions = {
             commit("logout");
             localStorage.removeItem("token");
             delete axios.defaults.headers.common["Authorization"];
+        });
+    },
+    user({commit}) {
+        const token = localStorage.getItem("token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: "/api/auth/user",
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+                .then(res => {
+                    commit("user_info", res.data);
+                    resolve(res);
+                })
+                .catch(err => reject(err));
         });
     }
 };

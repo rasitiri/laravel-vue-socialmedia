@@ -1,5 +1,5 @@
 <template>
-  <div class="container w-25 mt-3">
+  <div class="container w-50 mt-3">
     <h4 class="text-weight-bold text-uppercase">Login</h4>
     <form @submit.prevent="loginMethod">
       <div class="mb-3 mt-5">

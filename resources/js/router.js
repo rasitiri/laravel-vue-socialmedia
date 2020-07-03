@@ -23,7 +23,10 @@ const router = new VueRouter({
         {
             path: "/",
             name: "home",
-            component: Home
+            component: Home,
+            meta:{
+                requiresAuth: true
+            }
         },
         {
             path: "/login",

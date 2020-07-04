@@ -7,13 +7,15 @@ Vue.use(Vuex);
 const state = {
     status: "",
     token: localStorage.getItem("token") || "",
-    user: {}
+    user: {},
+    posts: {}
 };
 
 const getters = {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
-    getUser: state => state.user
+    getUser: state => state.user,
+    getPosts: state => state.posts
 };
 
 const mutations = {
@@ -33,6 +35,9 @@ const mutations = {
     },
     user_info(state, user) {
         state.user = user;
+    },
+    posts_success(state,posts){
+        state.posts = posts;
     }
 };
 
@@ -95,7 +100,7 @@ const actions = {
             delete axios.defaults.headers.common["Authorization"];
         });
     },
-    user({commit}) {
+    user({ commit }) {
         const token = localStorage.getItem("token");
         return new Promise((resolve, reject) => {
             axios({
@@ -110,6 +115,23 @@ const actions = {
                     resolve(res);
                 })
                 .catch(err => reject(err));
+        });
+    },
+    posts({ commit }) {
+        const token = localStorage.getItem("token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: "/api/post",
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+                .then(res => {
+                    console.log("response posts:", res)
+                    commit('posts_success',res.data)
+                })
+                .catch(err => console.log("error posts:", err));
         });
     }
 };

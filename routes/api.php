@@ -28,6 +28,11 @@ Route::group(['prefix' => 'auth'], function () {
     });
 });
 
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('post', 'PostController@store');
+    Route::get('post', 'PostController@index');
+});
+
 Route::fallback(function () {
     return response()->json([
         'message' => 'Not Found'

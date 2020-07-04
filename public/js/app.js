@@ -1945,6 +1945,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2123,8 +2128,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["body"]
+  props: ["body", "author", "postedTime"]
 });
 
 /***/ }),
@@ -6741,7 +6750,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bg-ccc {\n  background-color: rgb(240, 233, 233);\n}\n", ""]);
+exports.push([module.i, "\n.bg-ccc {\n  background-color: rgb(240, 233, 233);\n}\n.author {\n  color: rgb(168, 168, 168);\n  font-size: 0.9em;\n}\n", ""]);
 
 // exports
 
@@ -38606,7 +38615,14 @@ var render = function() {
       _c("publish"),
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
-        return _c("post", { key: post.id, attrs: { body: post.post } })
+        return _c("post", {
+          key: post.id,
+          attrs: {
+            body: post.post,
+            author: post.user.name,
+            postedTime: new Date(post.created_at).toLocaleDateString("tr")
+          }
+        })
       })
     ],
     2
@@ -38856,10 +38872,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mb-2 mt-2" }, [
     _c("div", { staticClass: "row m-2 d-flex" }, [
       _c("div", { staticClass: "col-sm-6 mx-auto bg-ccc" }, [
-        _c("p", { staticClass: "px-4 py-2 m-1" }, [_vm._v(_vm._s(_vm.body))])
+        _c("p", { staticClass: "px-3 py-1" }, [_vm._v(_vm._s(_vm.body))]),
+        _vm._v(" "),
+        _c("span", { staticClass: "float-right m-1 author" }, [
+          _vm._v("\n        " + _vm._s(_vm.author) + " -\n        "),
+          _c("span", [_vm._v(_vm._s(_vm.postedTime))])
+        ])
       ])
     ])
   ])

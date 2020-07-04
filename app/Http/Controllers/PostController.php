@@ -10,13 +10,13 @@ class PostController extends Controller
 {
     public function index()
     {
-        return Post::orderBy('created_at','desc')->get();
+        return Post::orderBy('created_at', 'desc')->with('user')->get();
     }
 
     public function store()
     {
         $attributes = request()->validate([
-            'body' => 'required|min:5'
+            'body' => 'required|min:5|max:255'
         ]);
 
         $newPost = new Post([

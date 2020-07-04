@@ -1,8 +1,13 @@
 <template>
   <div>
     <publish></publish>
-    <post v-for="post in posts" :key="post.id" :body="post.post">      
-    </post>
+    <post
+      v-for="post in posts"
+      :key="post.id"
+      :body="post.post"
+      :author="post.user.name"
+      :postedTime="new Date(post.created_at).toLocaleDateString('tr')"
+    ></post>
   </div>
 </template>
 
@@ -15,9 +20,9 @@ export default {
     Publish,
     Post
   },
-  computed:{
-    posts(){
-      return this.$store.getters.getPosts
+  computed: {
+    posts() {
+      return this.$store.getters.getPosts;
     }
   },
   created() {
@@ -26,6 +31,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

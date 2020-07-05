@@ -24,7 +24,7 @@
         </ul>
         <ul v-if="isLoggedIn" class="navbar-nav ml-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link">{{userEmail}}</a>
+            <router-link class="nav-link" tag="a" to="/profile">{{userEmail}}</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" @click="logout">Logout</a>

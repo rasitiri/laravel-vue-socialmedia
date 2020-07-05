@@ -5,7 +5,7 @@
         <p class="px-3 py-1">{{body}}</p>
         <span class="float-right m-1 author">
           {{author}} -
-          <span>{{postedTime}}</span>
+          <span>{{new Date(postedTime).toLocaleDateString('tr')}}</span>
         </span>
       </div>
     </div>

@@ -31,6 +31,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('post', 'PostController@store');
     Route::get('post', 'PostController@index');
+    Route::get('profile','PostController@profile');
 });
 
 Route::fallback(function () {

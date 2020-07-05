@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
 import Home from "./components/Home.vue";
+import Profile from './components/Profile'
 
 import store from "./store";
 
@@ -39,6 +40,11 @@ const router = new VueRouter({
             name: "register",
             component: Register,
             beforeEnter: ifUserLoggedIn
+        },
+        {
+            path:'/profile',
+            name:'profile',
+            component: Profile,
         }
     ]
 });

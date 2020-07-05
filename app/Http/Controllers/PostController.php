@@ -31,4 +31,12 @@ class PostController extends Controller
             'data' => $newPost
         ]);
     }
+
+    public function profile()
+    {
+        $posts = Post::all();
+        $posts->pluck('user_id');
+
+        return $posts->where('user_id', Auth::user()->id);
+    }
 }

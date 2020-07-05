@@ -6,7 +6,7 @@
       :key="post.id"
       :body="post.post"
       :author="post.user.name"
-      :postedTime="new Date(post.created_at).toLocaleDateString('tr')"
+      :postedTime="post.created_at"
     ></post>
   </div>
 </template>

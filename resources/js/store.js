@@ -8,14 +8,16 @@ const state = {
     status: "",
     token: localStorage.getItem("token") || "",
     user: {},
-    posts: {}
+    posts: {},
+    profilePosts: {}
 };
 
 const getters = {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
     getUser: state => state.user,
-    getPosts: state => state.posts
+    getPosts: state => state.posts,
+    getProfilePosts: state => state.profilePosts
 };
 
 const mutations = {
@@ -36,8 +38,11 @@ const mutations = {
     user_info(state, user) {
         state.user = user;
     },
-    posts_success(state,posts){
+    posts_success(state, posts) {
         state.posts = posts;
+    },
+    profile_posts_success(state, posts) {
+        state.profilePosts = posts;
     }
 };
 
@@ -128,10 +133,27 @@ const actions = {
                 }
             })
                 .then(res => {
-                    console.log("response posts:", res)
-                    commit('posts_success',res.data)
+                    console.log("response posts:", res);
+                    commit("posts_success", res.data);
                 })
                 .catch(err => console.log("error posts:", err));
+        });
+    },
+    profilePosts({commit}){
+        const token = localStorage.getItem("token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: "/api/profile",
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+                .then(res => {
+                    console.log("response profile posts:", res);
+                    commit("profile_posts_success", res.data);
+                })
+                .catch(err => console.log("error profile posts:", err));
         });
     }
 };

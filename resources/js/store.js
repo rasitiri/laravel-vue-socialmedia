@@ -9,7 +9,8 @@ const state = {
     token: localStorage.getItem("token") || "",
     user: {},
     posts: {},
-    profilePosts: {}
+    profilePosts: {},
+    postById:{}
 };
 
 const getters = {
@@ -17,7 +18,8 @@ const getters = {
     authStatus: state => state.status,
     getUser: state => state.user,
     getPosts: state => state.posts,
-    getProfilePosts: state => state.profilePosts
+    getProfilePosts: state => state.profilePosts,
+    getPostById: state => state.postById
 };
 
 const mutations = {
@@ -43,6 +45,9 @@ const mutations = {
     },
     profile_posts_success(state, posts) {
         state.profilePosts = posts;
+    },
+    get_by_id_success(state,post){
+        state.postById = post
     }
 };
 
@@ -133,13 +138,12 @@ const actions = {
                 }
             })
                 .then(res => {
-                    console.log("response posts:", res);
                     commit("posts_success", res.data);
                 })
                 .catch(err => console.log("error posts:", err));
         });
     },
-    profilePosts({commit}){
+    profilePosts({ commit }) {
         const token = localStorage.getItem("token");
         return new Promise((resolve, reject) => {
             axios({
@@ -150,10 +154,23 @@ const actions = {
                 }
             })
                 .then(res => {
-                    console.log("response profile posts:", res);
                     commit("profile_posts_success", res.data);
                 })
                 .catch(err => console.log("error profile posts:", err));
+        });
+    },
+    getPostById({ commit }, id) {
+        const token = localStorage.getItem("token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: "/api/post/" + id,
+                method: "GET",
+                headers: { Authorization: "Bearer " + token }
+            })
+                .then(res => {
+                    commit('get_by_id_success',res)
+                })
+                .catch(err => console.log(err));
         });
     }
 };

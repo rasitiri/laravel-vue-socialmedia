@@ -39,4 +39,17 @@ class PostController extends Controller
 
         return $posts->where('user_id', Auth::user()->id);
     }
+
+    public function getById($id)
+    {
+        $post = Post::find($id);
+        if ($post) {
+            return $post;
+        } 
+        else {
+            return response()->json([
+                'message' => 'The post not found.',
+            ]);
+        }
+    }
 }

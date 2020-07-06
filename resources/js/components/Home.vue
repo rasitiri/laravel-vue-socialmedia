@@ -7,6 +7,7 @@
       :body="post.post"
       :author="post.user.name"
       :postedTime="post.created_at"
+      :postId="post.id"
     ></post>
   </div>
 </template>

@@ -1,20 +1,20 @@
 <template>
   <div class="container mb-2 mt-2">
     <div class="row m-2 d-flex">
-      <div class="col-sm-6 mx-auto bg-ccc">
+      <router-link class="col-sm-6 mx-auto bg-ccc" :to="{path:'/post/' + postId}" tag="div">
         <p class="px-3 py-1">{{body}}</p>
         <span class="float-right m-1 author">
           {{author}} -
           <span>{{new Date(postedTime).toLocaleDateString('tr')}}</span>
         </span>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["body", "author", "postedTime"]
+  props: ["body", "author", "postedTime","postId"]
 };
 </script>
 

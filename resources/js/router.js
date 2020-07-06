@@ -4,6 +4,7 @@ import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
 import Home from "./components/Home.vue";
 import Profile from './components/Profile'
+import PostDetail from './components/PostDetail.vue'
 
 import store from "./store";
 
@@ -45,6 +46,11 @@ const router = new VueRouter({
             path:'/profile',
             name:'profile',
             component: Profile,
+        },
+        {
+            path:'/post/:id',
+            name: 'post',
+            component: PostDetail
         }
     ]
 });

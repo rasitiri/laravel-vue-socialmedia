@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('post', 'PostController@store');
     Route::get('post', 'PostController@index');
     Route::get('profile','PostController@profile');
+    Route::get('post/{id}','PostController@getById');
 });
 
 Route::fallback(function () {

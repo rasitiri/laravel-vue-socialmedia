@@ -7,6 +7,7 @@
       :key="post.id"
       author="me"
       :postedTime="post.created_at"
+      :postId="post.id"
     ></post>
   </div>
 </template>

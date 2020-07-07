@@ -1,25 +1,33 @@
 <template>
-  <div>
-    <publish></publish>
-    <post
-      v-for="post in posts"
-      :key="post.id"
-      :body="post.post"
-      :author="post.user.name"
-      :postedTime="post.created_at"
-      :postId="post.id"
-    ></post>
+  <div class="d-flex">
+    <div class="col-9">
+      <publish></publish>
+      <post
+        v-for="post in posts"
+        :key="post.id"
+        :body="post.post"
+        :author="post.user.name"
+        :postedTime="post.created_at"
+        :postId="post.id"
+        :authorId="post.user.id"
+      ></post>
+    </div>
+    <div class="col-3">
+      <friends-list></friends-list>
+    </div>
   </div>
 </template>
 
 <script>
 import Publish from "./Publish";
 import Post from "./Post";
+import FriendsList from "./FriendsList";
 
 export default {
   components: {
     Publish,
-    Post
+    Post,
+    FriendsList
   },
   computed: {
     posts() {

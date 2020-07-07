@@ -1,20 +1,59 @@
 <template>
-  <div class="container mb-2 mt-2">
+  <div class="mb-2 mt-2">
     <div class="row m-2 d-flex">
-      <router-link class="col-sm-6 mx-auto bg-ccc" :to="{path:'/post/' + postId}" tag="div">
-        <p class="px-3 py-1">{{body}}</p>
+      <div class="col-sm-6 mx-auto bg-ccc">
+        <router-link
+          tag="h5"
+          class="mt-1 pointer"
+          style="color:red;"
+          :to="{path:'/user/'+authorId}"
+        >{{author}}</router-link>
+        <p class="py-1">{{body}}</p>
         <span class="float-right m-1 author">
-          {{author}} -
-          <span>{{new Date(postedTime).toLocaleDateString('tr')}}</span>
+          <router-link class="pointer" :to="{path:'/post/' + postId}" tag="span">
+            {{moment(postedTime).fromNow()}} -
+            {{moment(postedTime).format('HH:mm a')}}
+          </router-link>
+          <span class="ml-3 pointer" v-if="loggedInUser()" @click="deletePost(postId)">
+            delete
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              class="bi bi-trash"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+              />
+            </svg>
+          </span>
         </span>
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["body", "author", "postedTime","postId"]
+  props: ["body", "author", "postedTime", "postId", "authorId"],
+  methods: {
+    loggedInUser() {
+      if (this.$store.state.user.id === this.$props.authorId) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    deletePost(postId) {
+      this.$store.dispatch("deletePost", postId);
+    }
+  }
 };
 </script>
 
@@ -25,5 +64,8 @@ export default {
 .author {
   color: rgb(168, 168, 168);
   font-size: 0.9em;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>

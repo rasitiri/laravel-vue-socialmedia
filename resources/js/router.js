@@ -3,8 +3,9 @@ import VueRouter from "vue-router";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
 import Home from "./components/Home.vue";
-import Profile from './components/Profile'
-import PostDetail from './components/PostDetail.vue'
+import Profile from "./components/Profile";
+import PostDetail from "./components/PostDetail.vue";
+import User from "./components/User.vue";
 
 import store from "./store";
 
@@ -18,7 +19,6 @@ const ifUserLoggedIn = (to, from, next) => {
     }
 };
 
-const vm = this;
 const router = new VueRouter({
     mode: "history",
     routes: [
@@ -26,7 +26,7 @@ const router = new VueRouter({
             path: "/",
             name: "home",
             component: Home,
-            meta:{
+            meta: {
                 requiresAuth: true
             }
         },
@@ -43,14 +43,28 @@ const router = new VueRouter({
             beforeEnter: ifUserLoggedIn
         },
         {
-            path:'/profile',
-            name:'profile',
+            path: "/profile",
+            name: "profile",
             component: Profile,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
-            path:'/post/:id',
-            name: 'post',
-            component: PostDetail
+            path: "/post/:id",
+            name: "post",
+            component: PostDetail,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/user/:id",
+            name: "user",
+            component: User,
+            meta: {
+                requiresAuth: true
+            }
         }
     ]
 });

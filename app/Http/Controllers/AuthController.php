@@ -39,7 +39,7 @@ class AuthController extends Controller
         ]);
 
         $credentials = request(['email', 'password']);
-        
+
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 'message' =>  'These credentials do not match our records.'
@@ -77,5 +77,13 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+
+    public function getUserById($id)
+    {
+        $user = User::find($id);
+         
+
+        return $user;
     }
 }

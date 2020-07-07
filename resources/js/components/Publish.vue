@@ -1,5 +1,5 @@
 <template>
-  <div class="g-3">
+  <div>
     <div class="col-12 d-flex">
       <textarea class="form-control m-auto w-50 d-block" rows="4" v-model="body"></textarea>
     </div>

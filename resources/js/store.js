@@ -10,7 +10,9 @@ const state = {
     user: {},
     posts: {},
     profilePosts: {},
-    postById:{}
+    postById: {},
+    userInfo: {},
+    usersPosts: {}
 };
 
 const getters = {
@@ -19,7 +21,9 @@ const getters = {
     getUser: state => state.user,
     getPosts: state => state.posts,
     getProfilePosts: state => state.profilePosts,
-    getPostById: state => state.postById
+    getPostById: state => state.postById,
+    getUserById: state => state.userInfo,
+    getUsersPosts: state => state.usersPosts
 };
 
 const mutations = {
@@ -46,8 +50,14 @@ const mutations = {
     profile_posts_success(state, posts) {
         state.profilePosts = posts;
     },
-    get_by_id_success(state,post){
-        state.postById = post
+    get_by_id_success(state, post) {
+        state.postById = post;
+    },
+    get_user_by_id_success(state, user) {
+        state.userInfo = user;
+    },
+    get_users_post_success(state, posts) {
+        state.usersPosts = posts;
     }
 };
 
@@ -137,9 +147,7 @@ const actions = {
                     Authorization: "Bearer " + token
                 }
             })
-                .then(res => {
-                    commit("posts_success", res.data);
-                })
+                .then(res => commit("posts_success", res.data))
                 .catch(err => console.log("error posts:", err));
         });
     },
@@ -153,9 +161,7 @@ const actions = {
                     Authorization: "Bearer " + token
                 }
             })
-                .then(res => {
-                    commit("profile_posts_success", res.data);
-                })
+                .then(res => commit("profile_posts_success", res.data))
                 .catch(err => console.log("error profile posts:", err));
         });
     },
@@ -167,9 +173,31 @@ const actions = {
                 method: "GET",
                 headers: { Authorization: "Bearer " + token }
             })
-                .then(res => {
-                    commit('get_by_id_success',res)
-                })
+                .then(res => commit("get_by_id_success", res.data))
+                .catch(err => console.log(err));
+        });
+    },
+    getUserById({ commit }, id) {
+        const token = localStorage.getItem("token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: "/api/auth/user/" + id,
+                method: "GET",
+                headers: { Authorization: "Bearer " + token }
+            })
+                .then(res => commit("get_user_by_id_success", res.data))
+                .catch(err => console.log(err));
+        });
+    },
+    getUsersPost({ commit }, id) {
+        const token = localStorage.getItem("token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: "/api/user/" + id,
+                method: "GET",
+                headers: { Authorization: "Bearer " + token }
+            })
+                .then(res => commit("get_users_post_success", res.data))
                 .catch(err => console.log(err));
         });
     }

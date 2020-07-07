@@ -45,11 +45,29 @@ class PostController extends Controller
         $post = Post::find($id);
         if ($post) {
             return $post;
-        } 
-        else {
+        } else {
             return response()->json([
                 'message' => 'The post not found.',
             ]);
         }
+    }
+
+    public function userProfile($id)
+    {
+        $posts = Post::all();
+        $posts->pluck('user_id');
+
+        if (count($posts->where('user_id', $id)) > 0) {
+            return $posts->where('user_id', $id);
+        } else {
+            return response()->json([
+                'message' => 'No post here yet.'
+            ]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        dd($id);
     }
 }

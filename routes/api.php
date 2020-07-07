@@ -25,14 +25,18 @@ Route::group(['prefix' => 'auth'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+        Route::get('user/{id}', 'AuthController@getUserById');
     });
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('post', 'PostController@store');
     Route::get('post', 'PostController@index');
-    Route::get('profile','PostController@profile');
-    Route::get('post/{id}','PostController@getById');
+    Route::get('profile', 'PostController@profile');
+    Route::get('post/{id}', 'PostController@getById');
+    Route::get('user/{id}', 'PostController@userProfile');
+
+    Route::delete('/post/{id}','PostController@destroy');
 });
 
 Route::fallback(function () {

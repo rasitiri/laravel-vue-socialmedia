@@ -68,6 +68,24 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        dd($id);
+        //This code will be fixed. Need a middleware.
+        if (Post::find($id)->user_id == Auth::user()->id) {
+            if (Post::find($id)) {
+                Post::destroy($id);
+
+                return response()->json([
+                    'message' => 'The post has been removed.',
+                    'data' => $id
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'The post has not been found.',
+                ]);
+            }
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
+        }
     }
 }

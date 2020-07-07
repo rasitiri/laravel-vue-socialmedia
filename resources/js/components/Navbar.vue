@@ -1,42 +1,75 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-    <div class="container-fluid">
-      <router-link tag="a" class="navbar-brand" to="/">Navbar</router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul v-if="!isLoggedIn" class="navbar-nav ml-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <router-link class="nav-link" tag="a" to="/login">Login</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" tag="a" to="/register">Register</router-link>
-          </li>
-        </ul>
-        <ul v-if="isLoggedIn" class="navbar-nav ml-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <router-link class="nav-link" tag="a" to="/profile">{{userEmail}}</router-link>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" @click="logout">Logout</a>
-          </li>
-        </ul>
+  <div class="font-sans antialiased">
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-5">
+      <div class="flex items-center flex-no-shrink text-white mr-6">
+        <svg
+          class="fill-current h-8 w-8 mr-2"
+          width="54"
+          height="54"
+          viewBox="0 0 54 54"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"
+          />
+        </svg>
+        <router-link
+          tag="span"
+          class="font-semibold text-xl tracking-tight cursor-pointer"
+          to="/"
+        >Hang Out</router-link>
       </div>
-    </div>
-  </nav>
+      <div class="block sm:hidden">
+        <button
+          @click="toggle"
+          class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white"
+        >
+          <svg class="fill-current h-3 w-3 text-white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div
+        :class="open ? 'block': 'hidden'"
+        class="w-full flex-grow sm:flex sm:items-center sm:w-auto"
+      >
+        <div class="text-sm sm:flex-grow"></div>
+        <div v-if="!isLoggedIn">
+          <router-link
+            to="/login"
+            tag="span"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+          >Login</router-link>
+          <router-link
+            to="/register"
+            tag="span"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+          >Register</router-link>
+        </div>
+        <div v-if="isLoggedIn">
+          <router-link
+            to="/profile"
+            tag="span"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+          >{{userEmail}}</router-link>
+          <a
+            @click="logout"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+          >Logout</a>
+        </div>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      open: false
+    };
+  },
   computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
@@ -50,6 +83,9 @@ export default {
       this.$store
         .dispatch("logout")
         .then(() => setTimeout(() => this.$router.push("/login"), 100));
+    },
+    toggle() {
+      this.open = !this.open;
     }
   }
 };

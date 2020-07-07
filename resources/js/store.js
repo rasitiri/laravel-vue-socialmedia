@@ -58,6 +58,10 @@ const mutations = {
     },
     get_users_post_success(state, posts) {
         state.usersPosts = posts;
+    },
+    delete_post(state, id) {
+        let index = state.posts.findIndex(post => post.id == id);
+        state.posts.splice(index, 1);
     }
 };
 
@@ -198,6 +202,23 @@ const actions = {
                 headers: { Authorization: "Bearer " + token }
             })
                 .then(res => commit("get_users_post_success", res.data))
+                .catch(err => console.log(err));
+        });
+    },
+    deletePost({ commit }, id) {
+        const token = localStorage.getItem("token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: "/api/post/" + id,
+                method: "DELETE",
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+                .then(res => {
+                    console.log(res);
+                    commit("delete_post", res.data.data);
+                })
                 .catch(err => console.log(err));
         });
     }

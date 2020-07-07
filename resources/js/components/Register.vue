@@ -1,34 +1,75 @@
 <template>
-  <div class="container w-50 mt-3">
-    <h4 class="text-weight-bold text-uppercase">Register</h4>
-    <form @submit.prevent="registerMethod">
-      <div class="mb-3 mt-5">
-        <input type="text" class="form-control" v-model="name" placeholder="Name" required />
-      </div>
-      <div class="mb-3">
-        <input type="email" class="form-control" v-model="email" placeholder="Email" required />
-      </div>
-      <div class="mb-3">
+  <form
+    @submit.prevent="registerMethod"
+    class="w-full max-w-lg mx-auto my-20 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+  >
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="name"
+        >Name</label>
         <input
+          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          id="name"
+          type="text"
+          v-model="name"
+          required
+        />
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="email"
+        >Email</label>
+        <input
+          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="email"
+          type="email"
+          v-model="email"
+          required
+        />
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-password"
+        >Password</label>
+        <input
+          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-password"
+          type="password"
+          placeholder="******************"
           v-model="password"
-          type="password"
-          class="form-control"
-          placeholder="Password"
           required
         />
       </div>
-      <div class="mb-3">
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="confirm-password"
+        >Confirm Password</label>
         <input
-          v-model="password_confirmation"
+          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="confirm-password"
           type="password"
-          class="form-control"
-          placeholder="Confirm Password"
+          placeholder="******************"
+          v-model="password_confirmation"
           required
         />
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
+      >Sign Up</button>
+    </div>
+  </form>
 </template>
 
 <script>

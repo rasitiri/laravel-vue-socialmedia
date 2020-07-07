@@ -1,10 +1,18 @@
 <template>
   <div>
     <div class="col-12 d-flex">
-      <textarea class="form-control m-auto w-50 d-block" rows="4" v-model="body"></textarea>
+      <textarea
+        class="form-control m-auto w-50 d-block"
+        rows="4"
+        v-model="body"
+        @keyup="countCharacter()"
+      ></textarea>
+    </div>
+    <div class="col-12 d-flex">
+      <span class="m-auto">{{totalCharacter}}</span>
     </div>
     <div class="col-12 d-flex mt-1">
-      <button type="submit" class="m-auto btn btn-success" @click="publish">Publish</button>
+      <button :disabled="totalCharacter >= 255" type="submit" class="m-auto btn btn-success" @click="publish">Publish</button>
     </div>
   </div>
 </template>
@@ -15,7 +23,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      body: ""
+      body: "",
+      totalCharacter: 0
     };
   },
   methods: {
@@ -37,6 +46,9 @@ export default {
           window.location.reload();
         })
         .catch(err => console.log("publish error:", err.response));
+    },
+    countCharacter() {
+      this.totalCharacter = this.body.length;
     }
   }
 };

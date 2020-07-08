@@ -1,6 +1,6 @@
 <template>
   <div class="font-sans antialiased">
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-5">
+    <nav class="flex items-center justify-between flex-wrap border-b border-gray-600 p-5">
       <div class="flex items-center flex-no-shrink text-white mr-6">
         <svg
           class="fill-current h-8 w-8 mr-2"

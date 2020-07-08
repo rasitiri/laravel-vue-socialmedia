@@ -1987,6 +1987,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2249,6 +2254,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["body", "author", "postedTime", "postId", "authorId"],
   methods: {
@@ -2373,6 +2386,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2382,6 +2420,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    warningClass: function warningClass() {
+      return {
+        "text-red-600 text-center text-sm": this.totalCharacter >= 200,
+        "text-gray-400 text-center text-sm": this.totalCharacter < 200
+      };
+    },
     publish: function publish() {
       var _this = this;
 
@@ -60191,33 +60235,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "d-flex" }, [
-    _c(
-      "div",
-      { staticClass: "col-9" },
-      [
-        _c("publish"),
-        _vm._v(" "),
-        _vm._l(_vm.posts, function(post) {
-          return _c("post", {
-            key: post.id,
-            attrs: {
-              body: post.post,
-              author: post.user.name,
-              postedTime: post.created_at,
-              postId: post.id,
-              authorId: post.user.id
-            }
+  return _c(
+    "div",
+    { staticClass: "container mx-auto grid grid-cols-3 gap-4" },
+    [
+      _c(
+        "div",
+        { staticClass: "col-span-2 py-3" },
+        [
+          _c("publish"),
+          _vm._v(" "),
+          _vm._l(_vm.posts, function(post) {
+            return _c("post", {
+              key: post.id,
+              attrs: {
+                body: post.post,
+                author: post.user.name,
+                postedTime: post.created_at,
+                postId: post.id,
+                authorId: post.user.id
+              }
+            })
           })
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-3" }, [_c("friends-list")], 1)
-  ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-span-1 p-2" }, [
+      _c(
+        "ul",
+        {
+          staticClass:
+            "mx-auto border-t border-r border-l rounded border-gray-600 w-5/6"
+        },
+        [
+          _c(
+            "li",
+            {
+              staticClass:
+                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600"
+            },
+            [_vm._v("Raşit")]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass:
+                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600"
+            },
+            [_vm._v("Raşit")]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass:
+                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600"
+            },
+            [_vm._v("Raşit")]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass:
+                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600"
+            },
+            [_vm._v("Raşit")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -60388,7 +60488,7 @@ var render = function() {
       "nav",
       {
         staticClass:
-          "flex items-center justify-between flex-wrap bg-teal-500 p-5"
+          "flex items-center justify-between flex-wrap border-b border-gray-600 p-5"
       },
       [
         _c(
@@ -60551,98 +60651,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-2 mt-2" }, [
-    _c("div", { staticClass: "row m-2 d-flex" }, [
-      _c(
-        "div",
-        { staticClass: "col-sm-6 mx-auto bg-ccc" },
-        [
-          _c(
-            "router-link",
-            {
-              staticClass: "mt-1 pointer",
-              staticStyle: { color: "red" },
-              attrs: { tag: "h5", to: { path: "/user/" + _vm.authorId } }
-            },
-            [_vm._v(_vm._s(_vm.author))]
-          ),
-          _vm._v(" "),
-          _c("p", { staticClass: "py-1" }, [_vm._v(_vm._s(_vm.body))]),
-          _vm._v(" "),
-          _c(
-            "span",
-            { staticClass: "float-right m-1 author" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "pointer",
-                  attrs: { to: { path: "/post/" + _vm.postId }, tag: "span" }
-                },
-                [
-                  _vm._v(
-                    "\n          " +
-                      _vm._s(_vm.moment(_vm.postedTime).fromNow()) +
-                      " -\n          " +
-                      _vm._s(_vm.moment(_vm.postedTime).format("HH:mm a")) +
-                      "\n        "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm.loggedInUser()
-                ? _c(
-                    "span",
-                    {
-                      staticClass: "ml-3 pointer",
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePost(_vm.postId)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v("\n          delete\n          "),
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "bi bi-trash",
-                          attrs: {
-                            width: "1em",
-                            height: "1em",
-                            viewBox: "0 0 16 16",
-                            fill: "currentColor",
-                            xmlns: "http://www.w3.org/2000/svg"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              "fill-rule": "evenodd",
-                              d:
-                                "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  )
-                : _vm._e()
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ])
-  ])
+  return _c(
+    "div",
+    {
+      staticClass:
+        "lg:w-2/3 mx-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-10"
+    },
+    [
+      _c("div", { staticClass: "px-6 py-4" }, [
+        _c("div", { staticClass: "font-bold text-xl mb-2 text-gray-400" }, [
+          _vm._v(_vm._s(_vm.author))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-gray-300 text-sm" }, [
+          _vm._v("\n      " + _vm._s(_vm.body) + "\n    ")
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60749,49 +60775,56 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "col-12 d-flex" }, [
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.body,
-            expression: "body"
-          }
-        ],
-        staticClass: "form-control m-auto w-50 d-block",
-        attrs: { rows: "4" },
-        domProps: { value: _vm.body },
-        on: {
-          keyup: function($event) {
-            return _vm.countCharacter()
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c("form", { staticClass: "lg:mx-auto mt-3 lg:w-2/3 w-auto mx-4" }, [
+      _c(
+        "div",
+        { staticClass: "flex items-center border-b border-teal-500 py-2" },
+        [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.body,
+                expression: "body"
+              }
+            ],
+            staticClass:
+              "appearance-none bg-transparent border-none w-full text-gray-300 mr-3 py-1 px-2 leading-tight focus:outline-none text-sm",
+            attrs: { type: "text", rows: "3" },
+            domProps: { value: _vm.body },
+            on: {
+              keyup: function($event) {
+                return _vm.countCharacter()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.body = $event.target.value
+              }
             }
-            _vm.body = $event.target.value
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12 d-flex" }, [
-      _c("span", { staticClass: "m-auto" }, [
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded total",
+              attrs: {
+                type: "button",
+                disabled: _vm.totalCharacter >= 255 && _vm.totalCharacter < 6
+              },
+              on: { click: _vm.publish }
+            },
+            [_vm._v("Publish")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("p", { class: _vm.warningClass() }, [
         _vm._v(_vm._s(_vm.totalCharacter))
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12 d-flex mt-1" }, [
-      _c(
-        "button",
-        {
-          staticClass: "m-auto btn btn-success",
-          attrs: { disabled: _vm.totalCharacter >= 255, type: "submit" },
-          on: { click: _vm.publish }
-        },
-        [_vm._v("Publish")]
-      )
     ])
   ])
 }

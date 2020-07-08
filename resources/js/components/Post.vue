@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-2 mt-2">
+  <!-- <div class="mb-2 mt-2">
     <div class="row m-2 d-flex">
       <div class="col-sm-6 mx-auto bg-ccc">
         <router-link
@@ -36,7 +36,15 @@
         </span>
       </div>
     </div>
+  </div> -->
+<div class="lg:w-2/3 mx-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-10">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2 text-gray-400">{{author}}</div>
+    <p class="text-gray-300 text-sm">
+      {{body}}
+    </p>
   </div>
+</div>
 </template>
 
 <script>

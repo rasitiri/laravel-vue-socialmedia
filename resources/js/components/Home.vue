@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex">
-    <div class="col-9">
+  <div class="container mx-auto grid grid-cols-3 gap-4">
+    <div class="col-span-2 py-3">
       <publish></publish>
       <post
         v-for="post in posts"
@@ -12,8 +12,13 @@
         :authorId="post.user.id"
       ></post>
     </div>
-    <div class="col-3">
-      <friends-list></friends-list>
+    <div class="col-span-1 p-2">
+      <ul class="mx-auto border-t border-r border-l rounded border-gray-600 w-5/6">
+        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600">Raşit</li>
+        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600">Raşit</li>
+        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600">Raşit</li>
+        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-600">Raşit</li>
+      </ul>
     </div>
   </div>
 </template>

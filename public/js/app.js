@@ -2303,6 +2303,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     post: function post() {
@@ -25768,23 +25770,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "p-2 text-center container" }, [
-      _c("h2", [_vm._v(_vm._s(_vm.post.post))]),
-      _vm._v(" "),
-      _c("small", [
-        _vm._v(
-          "\n      " +
-            _vm._s(_vm.moment(_vm.post.created_at).fromNow()) +
-            " -\n      " +
-            _vm._s(_vm.moment(_vm.post.created_at).format("HH:mm a")) +
-            "\n      " +
-            _vm._s(_vm.moment(_vm.post.created_at).format("Do MMM YY")) +
-            "\n    "
-        )
+  return _c(
+    "div",
+    {
+      staticClass:
+        "lg:w-5/12 mx-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-10"
+    },
+    [
+      _c("div", { staticClass: "px-6 py-4 container" }, [
+        _c(
+          "p",
+          { staticClass: "text-gray-300 text-center mt-4 mb-2 text-2xl" },
+          [_vm._v(_vm._s(_vm.post.post))]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex mt-6" }, [
+          _c("span", { staticClass: "ml-auto text-xs text-gray-600" }, [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.moment(_vm.post.created_at).fromNow()) +
+                " -\n        " +
+                _vm._s(_vm.moment(_vm.post.created_at).format("HH:mm a")) +
+                "\n        " +
+                _vm._s(_vm.moment(_vm.post.created_at).format("Do MMM YY")) +
+                "\n      "
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -36,7 +36,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('post/{id}', 'PostController@getById');
     Route::get('user/{id}', 'PostController@userProfile');
 
-    Route::delete('/post/{id}','PostController@destroy');
+    Route::delete('/post/{id}', 'PostController@destroy');
+
+    Route::post('user/{id}/follow', 'FollowsController@store');
 });
 
 Route::fallback(function () {

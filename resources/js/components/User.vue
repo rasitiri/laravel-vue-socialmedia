@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <user-card :name="user.name" :email="user.email" :joinedDate="user.created_at"></user-card>
-    <post
-      v-for="post in posts"
-      :key="post.id"
-      :body="post.post"
-      :author="user.name"
-      :postedTime="post.created_at"
-      :postId="post.id"
-      :authorId="user.id"
-    ></post>
+  <div class="container mx-auto grid grid-cols-4 gap-4">
+    <div class="lg:col-span-1">
+      <user-card :isLoggedInUser="false" :name="user.name" :email="user.email" :joinedDate="user.created_at"></user-card>
+    </div>
+    <div class="lg:col-span-3">
+      <div v-if="posts">
+        <post
+          v-for="post in posts"
+          :key="post.id"
+          :body="post.post"
+          :author="user.name"
+          :postedTime="post.created_at"
+          :postId="post.id"
+          :authorId="user.id"
+        ></post>
+      </div>
+      <div v-if="!posts">
+        <p class="text-gray-200 text-4xl text-center">No posts here yet.</p>
+      </div>
+    </div>
   </div>
 </template>
 

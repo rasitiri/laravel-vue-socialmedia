@@ -1,21 +1,23 @@
 import Vue from "vue";
-import App from "./components/App.vue";
 import Axios from "axios";
 import Notifications from "vue-notification";
 import moment from "moment";
+import VModal from "vue-js-modal";
+import 'vue-js-modal/dist/styles.css'
 
 import router from "./router";
 import store from "./store";
-
-require("./bootstrap");
+import App from "./components/App.vue";
 
 moment.locale("en");
 Vue.prototype.$http = Axios;
 Vue.prototype.moment = moment;
+Vue.prototype.modal = VModal;
 
 const token = localStorage.getItem("token");
 
 Vue.use(Notifications);
+Vue.use(VModal);
 
 if (token) {
     Vue.prototype.$http.defaults.headers.common["Authorization"] = token;

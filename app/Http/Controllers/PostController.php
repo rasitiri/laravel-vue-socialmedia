@@ -59,10 +59,6 @@ class PostController extends Controller
 
         if (count($posts->where('user_id', $id)) > 0) {
             return $posts->where('user_id', $id);
-        } else {
-            return response()->json([
-                'message' => 'No post here yet.'
-            ]);
         }
     }
 

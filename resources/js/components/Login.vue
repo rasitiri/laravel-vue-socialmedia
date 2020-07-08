@@ -6,7 +6,7 @@
         <label class="block text-gray-300 text-sm font-bold mb-2" for="email">Email</label>
         <input
           v-model="email"
-          class="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow focus:bg-white focus:border-gray-500 appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
           id="email"
           type="email"
           placeholder="Email"
@@ -17,7 +17,7 @@
         <label class="block text-gray-300 text-sm font-bold mb-2" for="password">Password</label>
         <input
           v-model="password"
-          class="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow focus:bg-white focus:border-gray-500 appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="******************"

@@ -136,6 +136,7 @@ const actions = {
             })
                 .then(res => {
                     commit("user_info", res.data);
+                    console.log("res.data:", res.data);
                     resolve(res);
                 })
                 .catch(err => reject(err));

@@ -3,6 +3,7 @@
     @submit.prevent="registerMethod"
     class="w-full max-w-lg mx-auto my-20 bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4"
   >
+    <h2 class="text-center text-3xl mt-2 mb-4 text-gray-300 uppercase">Register</h2>
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label

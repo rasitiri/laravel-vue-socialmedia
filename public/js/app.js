@@ -2259,11 +2259,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["body", "author", "postedTime", "postId", "authorId"],
@@ -2280,9 +2275,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     deletePost: function deletePost(postId) {
       this.$store.dispatch("deletePost", postId);
-    },
-    detail: function detail() {
-      this.$modal.show("post-detail");
     }
   }
 });
@@ -2312,7 +2304,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["body", "postedTime"],
   computed: {
     post: function post() {
       return this.$store.getters.getPostById;
@@ -25680,82 +25671,79 @@ var render = function() {
             _vm._v(_vm._s(_vm.body))
           ]),
           _vm._v(" "),
-          _c("span", { staticClass: "flex justify-end" }, [
-            _c(
-              "span",
-              {
-                staticClass: "cursor-pointer text-xs text-right text-gray-600",
-                on: {
-                  click: function($event) {
-                    return _vm.detail()
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(_vm.moment(_vm.postedTime).fromNow()) +
-                    " -\n        " +
-                    _vm._s(_vm.moment(_vm.postedTime).format("HH:mm a")) +
-                    "\n      "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm.loggedInUser()
-              ? _c(
-                  "span",
-                  {
-                    staticClass: "cursor-pointer ml-2 text-gray-600",
-                    on: {
-                      click: function($event) {
-                        return _vm.deletePost(_vm.postId)
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "bi bi-trash",
-                        attrs: {
-                          width: ".9em",
-                          height: "1em",
-                          viewBox: "0 0 16 16",
-                          fill: "currentColor",
-                          xmlns: "http://www.w3.org/2000/svg"
+          _c(
+            "span",
+            { staticClass: "flex justify-end" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass:
+                    "cursor-pointer text-xs text-right text-gray-600",
+                  attrs: { to: { path: "/post/" + _vm.postId }, tag: "span" }
+                },
+                [
+                  _vm._v(
+                    "\n        " +
+                      _vm._s(_vm.moment(_vm.postedTime).fromNow()) +
+                      " -\n        " +
+                      _vm._s(_vm.moment(_vm.postedTime).format("HH:mm a")) +
+                      "\n      "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.loggedInUser()
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "cursor-pointer ml-2 text-gray-600",
+                      on: {
+                        click: function($event) {
+                          return _vm.deletePost(_vm.postId)
                         }
-                      },
-                      [
-                        _c("path", {
+                      }
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "bi bi-trash",
                           attrs: {
-                            d:
-                              "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                            width: ".9em",
+                            height: "1em",
+                            viewBox: "0 0 16 16",
+                            fill: "currentColor",
+                            xmlns: "http://www.w3.org/2000/svg"
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            d:
-                              "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              : _vm._e()
-          ])
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("path", {
+                            attrs: {
+                              "fill-rule": "evenodd",
+                              d:
+                                "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ],
+            1
+          )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("post-detail", {
-        attrs: { body: _vm.body, postedTime: _vm.postedTime }
-      })
-    ],
-    1
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -25780,20 +25768,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("modal", { attrs: { name: "post-detail" } }, [
-    _c("div", { staticClass: "px-8 py-24" }, [
-      _c("p", { staticClass: "text-gray-200 mb-4 text-lg text-center" }, [
-        _vm._v(_vm._s(_vm.body))
-      ]),
+  return _c("div", [
+    _c("div", { staticClass: "p-2 text-center container" }, [
+      _c("h2", [_vm._v(_vm._s(_vm.post.post))]),
       _vm._v(" "),
-      _c("div", { staticClass: "text-xs text-gray-600 text-center" }, [
+      _c("small", [
         _vm._v(
           "\n      " +
-            _vm._s(_vm.moment(_vm.postedTime).fromNow()) +
+            _vm._s(_vm.moment(_vm.post.created_at).fromNow()) +
             " -\n      " +
-            _vm._s(_vm.moment(_vm.postedTime).format("HH:mm a")) +
+            _vm._s(_vm.moment(_vm.post.created_at).format("HH:mm a")) +
             "\n      " +
-            _vm._s(_vm.moment(_vm.postedTime).format("Do MMM YY")) +
+            _vm._s(_vm.moment(_vm.post.created_at).format("Do MMM YY")) +
             "\n    "
         )
       ])

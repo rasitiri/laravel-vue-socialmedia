@@ -8,18 +8,14 @@
       >{{author}}</router-link>
       <p class="text-gray-300 mt-4 mb-2 text-sm">{{body}}</p>
       <span class="flex justify-end">
-        <!-- <router-link
+        <router-link
           class="cursor-pointer text-xs text-right text-gray-600"
           :to="{path:'/post/' + postId}"
           tag="span"
         >
           {{moment(postedTime).fromNow()}} -
           {{moment(postedTime).format('HH:mm a')}}
-        </router-link>-->
-        <span @click="detail()" class="cursor-pointer text-xs text-right text-gray-600">
-          {{moment(postedTime).fromNow()}} -
-          {{moment(postedTime).format('HH:mm a')}}
-        </span>
+        </router-link>
         <span
           class="cursor-pointer ml-2 text-gray-600"
           v-if="loggedInUser()"
@@ -44,7 +40,6 @@
         </span>
       </span>
     </div>
-    <post-detail :body="body" :postedTime="postedTime"></post-detail>
   </div>
 </template>
 
@@ -53,7 +48,7 @@ import PostDetail from "./PostDetail";
 
 export default {
   props: ["body", "author", "postedTime", "postId", "authorId"],
-  components:{
+  components: {
     PostDetail
   },
   methods: {
@@ -66,9 +61,6 @@ export default {
     },
     deletePost(postId) {
       this.$store.dispatch("deletePost", postId);
-    },
-    detail() {
-      this.$modal.show("post-detail");
     }
   }
 };

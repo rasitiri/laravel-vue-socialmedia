@@ -1,19 +1,18 @@
 <template>
-  <modal name="post-detail">
-    <div class="px-8 py-24">
-      <p class="text-gray-200 mb-4 text-lg text-center">{{body}}</p>
-      <div class="text-xs text-gray-600 text-center">
-        {{moment(postedTime).fromNow()}} -
-        {{moment(postedTime).format('HH:mm a')}}
-        {{moment(postedTime).format('Do MMM YY')}}
-      </div>
+  <div>
+    <div class="p-2 text-center container">
+      <h2>{{post.post}}</h2>
+      <small>
+        {{moment(post.created_at).fromNow()}} -
+        {{moment(post.created_at).format('HH:mm a')}}
+        {{moment(post.created_at).format('Do MMM YY')}}
+      </small>
     </div>
-  </modal>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ["body", "postedTime"],
   computed: {
     post() {
       return this.$store.getters.getPostById;

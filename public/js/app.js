@@ -2358,15 +2358,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2702,10 +2693,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["name", "email", "joinedDate", "isLoggedInUser"],
+  props: ["name", "email", "joinedDate", "isLoggedInUser", "userId"],
+  methods: {
+    follow: function follow() {
+      this.$store.dispatch("follow", this.$props.userId);
+      this.$store.dispatch("isFollow", this.$props.userId);
+    }
+  },
+  computed: {
+    isFollow: function isFollow() {
+      return this.$store.getters.isFollow;
+    }
+  },
   created: function created() {
-    console.log(this.$props.isLoggedInUser);
+    this.$store.dispatch("isFollow", this.$props.userId);
   }
 });
 
@@ -25844,26 +25852,24 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "lg:col-span-3" }, [
-        _vm.profilePosts
-          ? _c(
-              "div",
-              _vm._l(_vm.profilePosts, function(post) {
-                return _c("post", {
-                  key: post.id,
-                  attrs: {
-                    body: post.post,
-                    author: _vm.user.name,
-                    postedTime: post.created_at,
-                    postId: post.id,
-                    authorId: _vm.user.id
-                  }
-                })
-              }),
-              1
-            )
-          : _vm._e(),
+        _c(
+          "div",
+          _vm._l(_vm.profilePosts, function(post) {
+            return _c("post", {
+              key: post.id,
+              attrs: {
+                body: post.post,
+                author: _vm.user.name,
+                postedTime: post.created_at,
+                postId: post.id,
+                authorId: _vm.user.id
+              }
+            })
+          }),
+          1
+        ),
         _vm._v(" "),
-        !_vm.profilePosts
+        _vm.profilePosts.length <= 0 || !_vm.profilePosts
           ? _c("div", [
               _c("p", { staticClass: "text-gray-200 text-4xl text-center" }, [
                 _vm._v("No posts here yet.")
@@ -26207,6 +26213,7 @@ var render = function() {
           _c("user-card", {
             attrs: {
               isLoggedInUser: false,
+              userId: _vm.$route.params.id,
               name: _vm.user.name,
               email: _vm.user.email,
               joinedDate: _vm.user.created_at
@@ -26297,14 +26304,32 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "flex" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-16 rounded-md"
-          },
-          [_vm._v(_vm._s(_vm.isLoggedInUser ? "Edit Profile" : "Following"))]
-        )
+        !_vm.isLoggedInUser
+          ? _c(
+              "button",
+              {
+                staticClass:
+                  "mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-16 rounded-md",
+                on: {
+                  click: function($event) {
+                    return _vm.follow()
+                  }
+                }
+              },
+              [_vm._v(_vm._s(_vm.isFollow))]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isLoggedInUser
+          ? _c(
+              "button",
+              {
+                staticClass:
+                  "mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-16 rounded-md"
+              },
+              [_vm._v("Edit Profile")]
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "px-6 py-4 my-2 flex" }, [
@@ -45003,7 +45028,8 @@ var state = {
   profilePosts: {},
   postById: {},
   userInfo: {},
-  usersPosts: {}
+  usersPosts: {},
+  followStatus: "........."
 };
 var getters = {
   isLoggedIn: function isLoggedIn(state) {
@@ -45029,6 +45055,9 @@ var getters = {
   },
   getUsersPosts: function getUsersPosts(state) {
     return state.usersPosts;
+  },
+  isFollow: function isFollow(state) {
+    return state.followStatus;
   }
 };
 var mutations = {
@@ -45069,6 +45098,10 @@ var mutations = {
       return post.id == id;
     });
     state.posts.splice(index, 1);
+  },
+  follow_status: function follow_status(state, status) {
+    console.log("status:", status);
+    state.followStatus = status ? "Unfollow" : "Follow";
   }
 };
 var actions = {
@@ -45253,6 +45286,37 @@ var actions = {
       })["catch"](function (err) {
         return console.log(err);
       });
+    });
+  },
+  follow: function follow(_ref11, id) {
+    var commit = _ref11.commit;
+    var token = localStorage.getItem("token");
+    axios__WEBPACK_IMPORTED_MODULE_2___default()({
+      url: "/api/user/" + id + "/follow",
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    }).then(function (res) {
+      console.log("follow response:", res);
+    })["catch"](function (err) {
+      return console.log("follow error:", err);
+    });
+  },
+  isFollow: function isFollow(_ref12, id) {
+    var commit = _ref12.commit;
+    var token = localStorage.getItem("token");
+    axios__WEBPACK_IMPORTED_MODULE_2___default()({
+      url: "/api/user/" + id + "/follow",
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    }).then(function (res) {
+      console.log("isfollow:", res.data);
+      commit("follow_status", res.data);
+    })["catch"](function (err) {
+      return err.response.data;
     });
   }
 };

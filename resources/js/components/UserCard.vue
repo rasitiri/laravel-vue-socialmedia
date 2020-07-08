@@ -16,8 +16,14 @@
     </div>
     <div class="flex">
       <button
+        v-if="!isLoggedInUser"
         class="mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-16 rounded-md"
-      >{{isLoggedInUser ? 'Edit Profile' : 'Following'}}</button>
+        @click="follow()"
+      >{{isFollow}}</button>
+      <button
+        v-if="isLoggedInUser"
+        class="mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-16 rounded-md"
+      >Edit Profile</button>
     </div>
     <div class="px-6 py-4 my-2 flex">
       <span
@@ -29,9 +35,21 @@
 
 <script>
 export default {
-  props: ["name", "email", "joinedDate", "isLoggedInUser"],
-  created(){
-    console.log(this.$props.isLoggedInUser)
+  props: ["name", "email", "joinedDate", "isLoggedInUser", "userId"],
+
+  methods: {
+    follow() {
+      this.$store.dispatch("follow", this.$props.userId);
+      this.$store.dispatch("isFollow", this.$props.userId);
+    }
+  },
+  computed: {
+    isFollow() {
+      return this.$store.getters.isFollow;
+    }
+  },
+  created() {
+    this.$store.dispatch("isFollow", this.$props.userId);
   }
 };
 </script>

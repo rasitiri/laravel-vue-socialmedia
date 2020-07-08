@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('/post/{id}', 'PostController@destroy');
 
     Route::post('user/{id}/follow', 'FollowsController@store');
+    Route::get('user/{id}/follow','FollowsController@isFollowed');
 });
 
 Route::fallback(function () {

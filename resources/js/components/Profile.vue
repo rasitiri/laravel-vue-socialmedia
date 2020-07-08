@@ -1,14 +1,5 @@
 <template>
   <div class="container mx-auto grid grid-cols-4 gap-4">
-    <!-- <h2 class="text-center text-gray-200 text-3xl">My Posts</h2>
-    <post
-      v-for="post in profilePosts"
-      :body="post.post"
-      :key="post.id"
-      author="me"
-      :postedTime="post.created_at"
-      :postId="post.id"
-    ></post>-->
     <div class="lg:col-span-1">
       <user-card
         :isLoggedInUser="true"
@@ -18,7 +9,7 @@
       ></user-card>
     </div>
     <div class="lg:col-span-3">
-      <div v-if="profilePosts">
+      <div>
         <post
           v-for="post in profilePosts"
           :key="post.id"
@@ -29,7 +20,7 @@
           :authorId="user.id"
         ></post>
       </div>
-      <div v-if="!profilePosts">
+      <div v-if="profilePosts.length <= 0 || !profilePosts">
         <p class="text-gray-200 text-4xl text-center">No posts here yet.</p>
       </div>
     </div>

@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->follows()->detach($user);
     }
+
+    public function following(User $user)
+    {
+        return $this->follows()->where('following_user_id', $user->id)->exists();
+    }
 }

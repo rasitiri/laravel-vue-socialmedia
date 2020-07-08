@@ -12,7 +12,8 @@ const state = {
     profilePosts: {},
     postById: {},
     userInfo: {},
-    usersPosts: {}
+    usersPosts: {},
+    followStatus: "........."
 };
 
 const getters = {
@@ -23,7 +24,8 @@ const getters = {
     getProfilePosts: state => state.profilePosts,
     getPostById: state => state.postById,
     getUserById: state => state.userInfo,
-    getUsersPosts: state => state.usersPosts
+    getUsersPosts: state => state.usersPosts,
+    isFollow: state => state.followStatus
 };
 
 const mutations = {
@@ -62,6 +64,10 @@ const mutations = {
     delete_post(state, id) {
         let index = state.posts.findIndex(post => post.id == id);
         state.posts.splice(index, 1);
+    },
+    follow_status(state, status) {
+        console.log("status:", status);
+        state.followStatus = status ? "Unfollow" : "Follow";
     }
 };
 
@@ -222,6 +228,36 @@ const actions = {
                 })
                 .catch(err => console.log(err));
         });
+    },
+    follow({ commit }, id) {
+        const token = localStorage.getItem("token");
+        axios({
+            url: "/api/user/" + id + "/follow",
+            method: "POST",
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(res => {
+                console.log("follow response:", res);
+            })
+            .catch(err => console.log("follow error:", err));
+    },
+    isFollow({ commit }, id) {
+        const token = localStorage.getItem("token");
+
+        axios({
+            url: "/api/user/" + id + "/follow",
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(res => {
+                console.log("isfollow:", res.data);
+                commit("follow_status", res.data);
+            })
+            .catch(err => err.response.data);
     }
 };
 

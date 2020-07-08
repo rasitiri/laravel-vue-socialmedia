@@ -60241,7 +60241,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "col-span-2 py-3" },
+        { staticClass: "lg:col-span-2 col-span-3 py-3" },
         [
           _c("publish"),
           _vm._v(" "),
@@ -60270,7 +60270,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-span-1 p-2" }, [
+    return _c("div", { staticClass: "lg:col-span-1 col-span-3 p-2" }, [
       _c(
         "ul",
         {
@@ -60343,7 +60343,7 @@ var render = function() {
     _c(
       "form",
       {
-        staticClass: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+        staticClass: "bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -60356,7 +60356,7 @@ var render = function() {
           "h2",
           {
             staticClass:
-              "text-center text-3xl mt-2 mb-4 text-gray-700 uppercase"
+              "text-center text-3xl mt-2 mb-4 text-gray-300 uppercase"
           },
           [_vm._v("Login")]
         ),
@@ -60365,7 +60365,7 @@ var render = function() {
           _c(
             "label",
             {
-              staticClass: "block text-gray-700 text-sm font-bold mb-2",
+              staticClass: "block text-gray-300 text-sm font-bold mb-2",
               attrs: { for: "email" }
             },
             [_vm._v("Email")]
@@ -60381,7 +60381,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+              "shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 leading-tight focus:outline-none focus:shadow-outline",
             attrs: {
               id: "email",
               type: "email",
@@ -60404,7 +60404,7 @@ var render = function() {
           _c(
             "label",
             {
-              staticClass: "block text-gray-700 text-sm font-bold mb-2",
+              staticClass: "block text-gray-300 text-sm font-bold mb-2",
               attrs: { for: "password" }
             },
             [_vm._v("Password")]
@@ -60420,7 +60420,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+              "shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 mb-3 leading-tight focus:outline-none focus:shadow-outline",
             attrs: {
               id: "password",
               type: "password",
@@ -60576,7 +60576,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer",
+                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer",
                         attrs: { to: "/login", tag: "span" }
                       },
                       [_vm._v("Login")]
@@ -60586,7 +60586,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer",
+                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer",
                         attrs: { to: "/register", tag: "span" }
                       },
                       [_vm._v("Register")]
@@ -60604,7 +60604,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer",
+                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer",
                         attrs: { to: "/profile", tag: "span" }
                       },
                       [_vm._v(_vm._s(_vm.userEmail))]
@@ -60614,7 +60614,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer",
+                          "no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer",
                         on: { click: _vm.logout }
                       },
                       [_vm._v("Logout")]
@@ -60854,7 +60854,7 @@ var render = function() {
     "form",
     {
       staticClass:
-        "w-full max-w-lg mx-auto my-20 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+        "w-full max-w-lg mx-auto my-20 bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -60869,7 +60869,7 @@ var render = function() {
             "label",
             {
               staticClass:
-                "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                "block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2",
               attrs: { for: "name" }
             },
             [_vm._v("Name")]
@@ -60885,7 +60885,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+              "shadow appearance-none block w-full bg-gray-800 text-sm text-gray-700 border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
             attrs: { id: "name", type: "text", required: "" },
             domProps: { value: _vm.name },
             on: {
@@ -60904,7 +60904,7 @@ var render = function() {
             "label",
             {
               staticClass:
-                "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                "block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2",
               attrs: { for: "email" }
             },
             [_vm._v("Email")]
@@ -60920,7 +60920,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+              "shadow appearance-none block w-full text-gray-700 text-sm bg-gray-800 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
             attrs: { id: "email", type: "email", required: "" },
             domProps: { value: _vm.email },
             on: {
@@ -60941,7 +60941,7 @@ var render = function() {
             "label",
             {
               staticClass:
-                "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                "block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2",
               attrs: { for: "grid-password" }
             },
             [_vm._v("Password")]
@@ -60957,7 +60957,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+              "shadow appearance-none block w-full bg-gray-800 text-gray-700 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
             attrs: {
               id: "grid-password",
               type: "password",
@@ -60983,7 +60983,7 @@ var render = function() {
             "label",
             {
               staticClass:
-                "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                "block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2",
               attrs: { for: "confirm-password" }
             },
             [_vm._v("Confirm Password")]
@@ -60999,7 +60999,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+              "shadow appearance-none block w-full text-gray-700 bg-gray-800 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
             attrs: {
               id: "confirm-password",
               type: "password",
@@ -61033,7 +61033,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
+            "bg-blue-500 hover:bg-blue-700 text-gray-300 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
           attrs: { type: "submit" }
         },
         [_vm._v("Sign Up")]

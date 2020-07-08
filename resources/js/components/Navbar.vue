@@ -39,23 +39,23 @@
           <router-link
             to="/login"
             tag="span"
-            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
           >Login</router-link>
           <router-link
             to="/register"
             tag="span"
-            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
           >Register</router-link>
         </div>
         <div v-if="isLoggedIn">
           <router-link
             to="/profile"
             tag="span"
-            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
           >{{userEmail}}</router-link>
           <a
             @click="logout"
-            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white text-gray-300 cursor-pointer"
+            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
           >Logout</a>
         </div>
       </div>

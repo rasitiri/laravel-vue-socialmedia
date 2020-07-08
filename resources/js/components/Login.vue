@@ -1,12 +1,12 @@
 <template>
   <div class="w-full max-w-xs mx-auto my-20">
-    <form @submit.prevent="loginMethod" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <h2 class="text-center text-3xl mt-2 mb-4 text-gray-700 uppercase">Login</h2>
+    <form @submit.prevent="loginMethod" class="bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 class="text-center text-3xl mt-2 mb-4 text-gray-300 uppercase">Login</h2>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+        <label class="block text-gray-300 text-sm font-bold mb-2" for="email">Email</label>
         <input
           v-model="email"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
           id="email"
           type="email"
           placeholder="Email"
@@ -14,10 +14,10 @@
         />
       </div>
       <div class="mb-6">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+        <label class="block text-gray-300 text-sm font-bold mb-2" for="password">Password</label>
         <input
           v-model="password"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 text-sm bg-gray-800 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="******************"

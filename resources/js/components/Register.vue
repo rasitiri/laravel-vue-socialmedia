@@ -1,16 +1,16 @@
 <template>
   <form
     @submit.prevent="registerMethod"
-    class="w-full max-w-lg mx-auto my-20 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+    class="w-full max-w-lg mx-auto my-20 bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4"
   >
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
-          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
           for="name"
         >Name</label>
         <input
-          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          class="shadow appearance-none block w-full bg-gray-800 text-sm text-gray-700 border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="name"
           type="text"
           v-model="name"
@@ -19,11 +19,11 @@
       </div>
       <div class="w-full md:w-1/2 px-3">
         <label
-          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
           for="email"
         >Email</label>
         <input
-          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="shadow appearance-none block w-full text-gray-700 text-sm bg-gray-800 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="email"
           type="email"
           v-model="email"
@@ -34,11 +34,11 @@
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full px-3">
         <label
-          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
           for="grid-password"
         >Password</label>
         <input
-          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="shadow appearance-none block w-full bg-gray-800 text-gray-700 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-password"
           type="password"
           placeholder="******************"
@@ -50,11 +50,11 @@
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full px-3">
         <label
-          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
           for="confirm-password"
         >Confirm Password</label>
         <input
-          class="shadow appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="shadow appearance-none block w-full text-gray-700 bg-gray-800 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="confirm-password"
           type="password"
           placeholder="******************"
@@ -65,7 +65,7 @@
     </div>
     <div class="flex items-center justify-between">
       <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        class="bg-blue-500 hover:bg-blue-700 text-gray-300 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         type="submit"
       >Sign Up</button>
     </div>

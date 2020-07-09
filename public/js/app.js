@@ -1951,7 +1951,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    friends: function friends() {
+      return this.$store.getters.getFriends;
+    }
+  },
+  created: function created() {
+    this.$store.dispatch("getFriends");
+  }
+});
 
 /***/ }),
 
@@ -1967,13 +1986,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Publish__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Publish */ "./resources/js/components/Publish.vue");
 /* harmony import */ var _Post__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Post */ "./resources/js/components/Post.vue");
 /* harmony import */ var _FriendsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FriendsList */ "./resources/js/components/FriendsList.vue");
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -25183,43 +25195,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container px-5" }, [
-      _c("h4", { staticClass: "text-center" }, [
-        _vm._v("\n    Friends List\n    "),
-        _c("hr")
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "list-group" }, [
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("Cras justo odio")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("Dapibus ac facilisis in")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("Morbi leo risus")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("Porta ac consectetur ac")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("Vestibulum at eros")
+  return _c("div", { staticClass: "lg:col-span-1 col-span-3 p-2" }, [
+    _c("h1", { staticClass: "text-center text-xl text-gray-300 my-2" }, [
+      _vm._v("Friends")
+    ]),
+    _vm._v(" "),
+    _vm.friends.length <= 0
+      ? _c("div", [
+          _c("p", { staticClass: "text-center text-gray-300 text-lg" }, [
+            _vm._v("No friends. :/")
+          ])
         ])
-      ])
-    ])
-  }
-]
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.friends.length > 0
+      ? _c(
+          "ul",
+          {
+            staticClass:
+              "mx-auto border-t border-r border-l rounded border-gray-600 w-5/6"
+          },
+          _vm._l(_vm.friends, function(friend) {
+            return _c(
+              "li",
+              {
+                key: friend.id,
+                staticClass:
+                  "border-b flex items-center border-gray-500 text-center px-2 py-4 text-sm text-gray-300"
+              },
+              [
+                _c("img", {
+                  staticClass: "rounded-full h-16 w-1/5",
+                  attrs: {
+                    src: "https://picsum.photos/id/" + friend.id + "/200",
+                    alt: "image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "font-bold text-gray-400 mx-2 cursor-pointer",
+                    attrs: { tag: "span", to: { path: "/user/" + friend.id } }
+                  },
+                  [_vm._v(_vm._s(friend.name))]
+                )
+              ],
+              1
+            )
+          }),
+          0
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -25267,63 +25297,12 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _vm._m(0)
-    ]
+      _c("friends-list")
+    ],
+    1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "lg:col-span-1 col-span-3 p-2" }, [
-      _c(
-        "ul",
-        {
-          staticClass:
-            "mx-auto border-t border-r border-l rounded border-gray-600 w-5/6"
-        },
-        [
-          _c(
-            "li",
-            {
-              staticClass:
-                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300"
-            },
-            [_vm._v("Raşit")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300"
-            },
-            [_vm._v("Raşit")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300"
-            },
-            [_vm._v("Raşit")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass:
-                "border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300"
-            },
-            [_vm._v("Raşit")]
-          )
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -26286,7 +26265,7 @@ var render = function() {
       _c("img", {
         staticClass: "w-full",
         attrs: {
-          src: "https://tailwindcss.com/img/card-top.jpg",
+          src: "https://picsum.photos/id/" + _vm.userId + "/200",
           alt: "user-profile-photo"
         }
       }),
@@ -45029,7 +45008,8 @@ var state = {
   postById: {},
   userInfo: {},
   usersPosts: {},
-  followStatus: "........."
+  followStatus: ".........",
+  friends: []
 };
 var getters = {
   isLoggedIn: function isLoggedIn(state) {
@@ -45058,6 +45038,9 @@ var getters = {
   },
   isFollow: function isFollow(state) {
     return state.followStatus;
+  },
+  getFriends: function getFriends(state) {
+    return state.friends;
   }
 };
 var mutations = {
@@ -45100,8 +45083,10 @@ var mutations = {
     state.posts.splice(index, 1);
   },
   follow_status: function follow_status(state, status) {
-    console.log("status:", status);
     state.followStatus = status ? "Unfollow" : "Follow";
+  },
+  friends_success: function friends_success(state, friends) {
+    state.friends = friends;
   }
 };
 var actions = {
@@ -45317,6 +45302,22 @@ var actions = {
       commit("follow_status", res.data);
     })["catch"](function (err) {
       return err.response.data;
+    });
+  },
+  getFriends: function getFriends(_ref13) {
+    var commit = _ref13.commit;
+    var token = localStorage.getItem("token");
+    axios__WEBPACK_IMPORTED_MODULE_2___default()({
+      url: "/api/friends",
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    }).then(function (res) {
+      console.log("friends:", res.data);
+      commit("friends_success", res.data);
+    })["catch"](function (err) {
+      return err.response;
     });
   }
 };

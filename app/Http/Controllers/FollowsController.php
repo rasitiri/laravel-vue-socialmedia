@@ -22,4 +22,8 @@ class FollowsController extends Controller
             return response()->json(false);
         }
     }
+
+    public function friends(){
+        return Auth::user()->follows;
+    }
 }

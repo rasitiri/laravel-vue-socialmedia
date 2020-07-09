@@ -12,14 +12,7 @@
         :authorId="post.user.id"
       ></post>
     </div>
-    <div class="lg:col-span-1 col-span-3 p-2">
-      <ul class="mx-auto border-t border-r border-l rounded border-gray-600 w-5/6">
-        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300">Raşit</li>
-        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300">Raşit</li>
-        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300">Raşit</li>
-        <li class="border-b border-gray-500 text-center px-2 py-4 text-sm text-gray-300">Raşit</li>
-      </ul>
-    </div>
+    <friends-list></friends-list>
   </div>
 </template>
 

@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('user/{id}/follow', 'FollowsController@store');
     Route::get('user/{id}/follow','FollowsController@isFollowed');
+    Route::get('friends','FollowsController@friends');
 });
 
 Route::fallback(function () {

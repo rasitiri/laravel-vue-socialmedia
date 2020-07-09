@@ -13,7 +13,8 @@ const state = {
     postById: {},
     userInfo: {},
     usersPosts: {},
-    followStatus: "........."
+    followStatus: ".........",
+    friends: []
 };
 
 const getters = {
@@ -25,7 +26,8 @@ const getters = {
     getPostById: state => state.postById,
     getUserById: state => state.userInfo,
     getUsersPosts: state => state.usersPosts,
-    isFollow: state => state.followStatus
+    isFollow: state => state.followStatus,
+    getFriends: state => state.friends
 };
 
 const mutations = {
@@ -66,8 +68,10 @@ const mutations = {
         state.posts.splice(index, 1);
     },
     follow_status(state, status) {
-        console.log("status:", status);
         state.followStatus = status ? "Unfollow" : "Follow";
+    },
+    friends_success(state, friends) {
+        state.friends = friends;
     }
 };
 
@@ -258,6 +262,22 @@ const actions = {
                 commit("follow_status", res.data);
             })
             .catch(err => err.response.data);
+    },
+    getFriends({ commit }) {
+        const token = localStorage.getItem("token");
+
+        axios({
+            url: "/api/friends",
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+            .then(res => {
+                console.log("friends:", res.data);
+                commit("friends_success", res.data);
+            })
+            .catch(err => err.response);
     }
 };
 

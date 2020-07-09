@@ -7,7 +7,7 @@
     </div>
   </div>-->
   <div class="max-w-sm rounded overflow-hidden bg-gray-700 shadow-lg my-10">
-    <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="user-profile-photo" />
+    <img class="w-full" :src="`https://picsum.photos/id/${userId}/200`" alt="user-profile-photo" />
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2 text-gray-400">{{name}}</div>
       <p

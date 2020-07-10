@@ -76,7 +76,7 @@ const mutations = {
         state.friends = friends;
     },
     search_results_visible(state, type) {
-        console.log("type:",type)
+        console.log("type:", type);
         state.searchResultsVisible = type;
     }
 };
@@ -299,7 +299,7 @@ const actions = {
             .catch(err => console.log("publish error:", err.response));
     },
     searchResultsVisible({ commit }, type) {
-        console.log("type:",type);
+        console.log("type:", type);
         commit("search_results_visible", type);
     }
 };

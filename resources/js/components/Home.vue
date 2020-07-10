@@ -40,36 +40,19 @@ export default {
     return {
       data: [],
       busy: false,
-      limit:10
+      limit: 10
     };
   },
-  // computed: {
-  //   posts() {
-  //     return this.$store.getters.getPosts;
-  //   }
-  // },
   methods: {
-    // loadMore() {
-    //   return this.$store.dispatch("posts");
-    // }
     loadMore() {
-      this.busy = true;
-      const token = localStorage.getItem("token");
-      this.$http({
-        url: "/api/post",
-        headers: { Authorization: "Bearer " + token },
-        method: "GET"
-      })
-        .then(res => {
-          const append = res.data.slice(
-            this.data.length,
-            this.data.length + this.limit
-          );
-          this.data = this.data.concat(append);
-          this.busy = false;
-          console.log("DATA DATA DATA DATA => ",this.data)
-        })
-        .catch(err => console.log(err.response));
+      return this.$store.dispatch("posts").then(res => {
+        const append = res.slice(
+          this.data.length,
+          this.data.length + this.limit
+        );
+        this.data = this.data.concat(append);
+        this.busy = false;
+      });
     }
   },
   created() {

@@ -168,10 +168,13 @@ const actions = {
                 }
             })
                 .then(res => {
-                    console.log("friends posts => ",res)
-                    commit("posts_success", res.data)
+                    commit("posts_success", res.data);
+                    resolve(res.data);
                 })
-                .catch(err => console.log("error friends posts:", err.response));
+                .catch(err => {
+                    console.log("error friends posts:", err.response);
+                    reject(err);
+                });
         });
     },
     profilePosts({ commit }) {

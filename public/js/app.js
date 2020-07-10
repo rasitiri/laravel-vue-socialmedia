@@ -2070,33 +2070,14 @@ __webpack_require__.r(__webpack_exports__);
       limit: 10
     };
   },
-  // computed: {
-  //   posts() {
-  //     return this.$store.getters.getPosts;
-  //   }
-  // },
   methods: {
-    // loadMore() {
-    //   return this.$store.dispatch("posts");
-    // }
     loadMore: function loadMore() {
       var _this = this;
 
-      this.busy = true;
-      var token = localStorage.getItem("token");
-      this.$http({
-        url: "/api/post",
-        headers: {
-          Authorization: "Bearer " + token
-        },
-        method: "GET"
-      }).then(function (res) {
-        var append = res.data.slice(_this.data.length, _this.data.length + _this.limit);
+      return this.$store.dispatch("posts").then(function (res) {
+        var append = res.slice(_this.data.length, _this.data.length + _this.limit);
         _this.data = _this.data.concat(append);
         _this.busy = false;
-        console.log("DATA DATA DATA DATA => ", _this.data);
-      })["catch"](function (err) {
-        return console.log(err.response);
       });
     }
   },
@@ -45711,10 +45692,11 @@ var actions = {
           Authorization: "Bearer " + token
         }
       }).then(function (res) {
-        console.log("friends posts => ", res);
         commit("posts_success", res.data);
+        resolve(res.data);
       })["catch"](function (err) {
-        return console.log("error friends posts:", err.response);
+        console.log("error friends posts:", err.response);
+        reject(err);
       });
     });
   },

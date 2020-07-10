@@ -1,9 +1,15 @@
 <template>
   <div class="container mx-auto grid grid-cols-4 gap-4">
-    <div class="lg:col-span-1">
-      <user-card :isLoggedInUser="false" :userId="$route.params.id" :name="user.name" :email="user.email" :joinedDate="user.created_at"></user-card>
+    <div class="lg:col-span-1 col-span-4 flex mx-auto ml-auto">
+      <user-card
+        :isLoggedInUser="false"
+        :userId="$route.params.id"
+        :name="user.name"
+        :email="user.email"
+        :joinedDate="user.created_at"
+      ></user-card>
     </div>
-    <div class="lg:col-span-3">
+    <div class="lg:col-span-3 col-span-4">
       <div v-if="posts">
         <post
           v-for="post in posts"

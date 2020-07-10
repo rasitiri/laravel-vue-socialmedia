@@ -1,14 +1,15 @@
 <template>
   <div class="container mx-auto grid grid-cols-4 gap-4">
-    <div class="lg:col-span-1">
+    <div class="lg:col-span-1 col-span-4 flex mx-auto ml-auto">
       <user-card
         :isLoggedInUser="true"
+        :userId="user.id"
         :name="user.name"
         :email="user.email"
         :joinedDate="user.created_at"
       ></user-card>
     </div>
-    <div class="lg:col-span-3">
+    <div class="lg:col-span-3 col-span-4">
       <div>
         <post
           v-for="post in profilePosts"

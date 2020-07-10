@@ -3,7 +3,8 @@ import Axios from "axios";
 import Notifications from "vue-notification";
 import moment from "moment";
 import VModal from "vue-js-modal";
-import 'vue-js-modal/dist/styles.css'
+import VueFuse from "vue-fuse";
+import "vue-js-modal/dist/styles.css";
 
 import router from "./router";
 import store from "./store";
@@ -18,6 +19,7 @@ const token = localStorage.getItem("token");
 
 Vue.use(Notifications);
 Vue.use(VModal);
+Vue.use(VueFuse);
 
 if (token) {
     Vue.prototype.$http.defaults.headers.common["Authorization"] = token;

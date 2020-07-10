@@ -1,13 +1,6 @@
 <template>
-  <!-- <div class="card mx-auto" style="width: 20rem;">
-    <div class="card-body">
-      <h5 class="card-title font-weight-bold">{{name}}</h5>
-      <p class="card-text">{{email}}</p>
-      <span class="badge bg-primary text-white float-right">joined {{moment(joinedDate).fromNow()}}</span>
-    </div>
-  </div>-->
   <div class="max-w-sm rounded overflow-hidden bg-gray-700 shadow-lg my-10">
-    <img class="w-full" :src="`https://picsum.photos/id/${userId}/200`" alt="user-profile-photo" />
+    <img class="w-full object-contain" :src="`https://picsum.photos/id/${userId}/400`" alt="user-profile-photo" />
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2 text-gray-400">{{name}}</div>
       <p

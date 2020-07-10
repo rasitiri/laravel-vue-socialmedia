@@ -6,8 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Searchable
 {
     use Notifiable, HasApiTokens;
 
@@ -66,5 +68,11 @@ class User extends Authenticatable
     public function following(User $user)
     {
         return $this->follows()->where('following_user_id', $user->id)->exists();
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('users', $this->id);
+        return new SearchResult($this, $this->name, $url);
     }
 }

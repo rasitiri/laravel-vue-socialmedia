@@ -24,7 +24,11 @@
           @click="toggle"
           class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white"
         >
-          <svg class="fill-current h-3 w-3 text-white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            class="fill-current h-3 w-3 text-white"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <title>Menu</title>
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
@@ -34,7 +38,43 @@
         :class="open ? 'block': 'hidden'"
         class="w-full flex-grow sm:flex sm:items-center sm:w-auto"
       >
-        <div class="text-sm sm:flex-grow"></div>
+        <div class="text-sm flex sm:flex-grow">
+          <div class="relative lg:mx-auto lg:m-0 mt-3">
+            <input
+              v-model="query"
+              type="text"
+              class="mx-auto text-gray-300 bg-gray-800 text-sm rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline"
+            />
+            <div class="absolute top-0">
+              <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24">
+                <path
+                  class="heroicon-ui"
+                  d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"
+                />
+              </svg>
+            </div>
+            <div class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-4">
+              <ul v-if="results.length > 0 && query">
+                <li
+                  class="border-b border-gray-700 flex p-2 items-center"
+                  v-for="result in results.slice(0,10)"
+                  :key="result.searchable.id"
+                >
+                  <img
+                    :src="`https://picsum.photos/id/${result.searchable.id}/50/50`"
+                    alt="image"
+                    class="rounded-full mx-1"
+                  />
+                  <router-link
+                    :to="{path:'/user/'+result.searchable.id}"
+                    tag="a"
+                    class="text-gray-300 px-3 py-3 flex items-center cursor-pointer transition ease-in-out duration-150"
+                  >{{result.searchable.name}}</router-link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div v-if="!isLoggedIn">
           <router-link
             to="/login"
@@ -67,7 +107,9 @@
 export default {
   data() {
     return {
-      open: false
+      open: false,
+      query: "",
+      results: []
     };
   },
   computed: {
@@ -78,6 +120,14 @@ export default {
       return this.$store.getters.getUser.email;
     }
   },
+  watch: {
+    query(after, before) {
+      this.users();
+    },
+    $route(to, from) {
+      this.query = "";
+    }
+  },
   methods: {
     logout() {
       this.$store
@@ -86,6 +136,21 @@ export default {
     },
     toggle() {
       this.open = !this.open;
+    },
+    users() {
+      const token = localStorage.getItem("token");
+      this.$http({
+        url: "api/auth/users",
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        params: {
+          query: this.query
+        }
+      })
+        .then(response => (this.results = response.data))
+        .catch(error => {});
     }
   }
 };

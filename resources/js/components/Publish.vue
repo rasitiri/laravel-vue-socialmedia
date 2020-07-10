@@ -40,24 +40,27 @@ export default {
       };
     },
     publish() {
-      const token = localStorage.getItem("token");
-      axios({
-        url: "/api/post",
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + token
-        },
-        data: {
-          body: this.body
-        }
-      })
-        .then(res => {
-          console.log("publish response:", res);
-          this.body = "";
-          window.location.reload();
-        })
-        .catch(err => console.log("publish error:", err.response));
+      this.$store.dispatch("publish", this.body);
     },
+    // publish() {
+    //   const token = localStorage.getItem("token");
+    //   axios({
+    //     url: "/api/post",
+    //     method: "POST",
+    //     headers: {
+    //       Authorization: "Bearer " + token
+    //     },
+    //     data: {
+    //       body: this.body
+    //     }
+    //   })
+    //     .then(res => {
+    //       console.log("publish response:", res);
+    //       this.body = "";
+    //       window.location.reload();
+    //     })
+    //     .catch(err => console.log("publish error:", err.response));
+    // },
     countCharacter() {
       this.totalCharacter = this.body.length;
     }

@@ -11,7 +11,7 @@
           for="name"
         >Name</label>
         <input
-          class="shadow appearance-none block w-full bg-gray-800 text-sm text-gray-700 border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          class="shadow appearance-none block w-full bg-gray-800 text-sm focus:text-gray-700 text-gray-300 border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="name"
           type="text"
           v-model="name"
@@ -24,7 +24,7 @@
           for="email"
         >Email</label>
         <input
-          class="shadow appearance-none block w-full text-gray-700 text-sm bg-gray-800 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="shadow appearance-none block w-full focus:text-gray-700 text-gray-300 text-sm bg-gray-800 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="email"
           type="email"
           v-model="email"
@@ -39,7 +39,7 @@
           for="grid-password"
         >Password</label>
         <input
-          class="shadow appearance-none block w-full bg-gray-800 text-gray-700 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="shadow appearance-none block w-full bg-gray-800 focus:text-gray-700 text-gray-300 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-password"
           type="password"
           placeholder="******************"
@@ -55,7 +55,7 @@
           for="confirm-password"
         >Confirm Password</label>
         <input
-          class="shadow appearance-none block w-full text-gray-700 bg-gray-800 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="shadow appearance-none block w-full focus:text-gray-700 text-gray-300 bg-gray-800 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="confirm-password"
           type="password"
           placeholder="******************"

@@ -14,7 +14,8 @@ const state = {
     userInfo: {},
     usersPosts: {},
     followStatus: ".........",
-    friends: []
+    friends: [],
+    searchResultsVisible: false
 };
 
 const getters = {
@@ -27,7 +28,8 @@ const getters = {
     getUserById: state => state.userInfo,
     getUsersPosts: state => state.usersPosts,
     isFollow: state => state.followStatus,
-    getFriends: state => state.friends
+    getFriends: state => state.friends,
+    getSearchResultsVisible: state => state.searchResultsVisible
 };
 
 const mutations = {
@@ -72,6 +74,10 @@ const mutations = {
     },
     friends_success(state, friends) {
         state.friends = friends;
+    },
+    search_results_visible(state, type) {
+        console.log("type:",type)
+        state.searchResultsVisible = type;
     }
 };
 
@@ -278,6 +284,23 @@ const actions = {
                 commit("friends_success", res.data);
             })
             .catch(err => err.response);
+    },
+    publish({ commit }, body) {
+        const token = localStorage.getItem("token");
+        axios({
+            url: "/api/post",
+            method: "POST",
+            headers: {
+                Authorization: "Bearer " + token
+            },
+            data: { body }
+        })
+            .then(res => window.location.reload())
+            .catch(err => console.log("publish error:", err.response));
+    },
+    searchResultsVisible({ commit }, type) {
+        console.log("type:",type);
+        commit("search_results_visible", type);
     }
 };
 

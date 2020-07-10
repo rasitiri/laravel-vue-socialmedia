@@ -6,9 +6,16 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Searchable\Search;
 
 class AuthController extends Controller
 {
+    public function index(Request $request)
+    {
+        $results = (new Search())->registerModel(User::class, ['name'])->search($request->input('query'));
+        return response()->json($results);
+    }
+
     public function signup(Request $request)
     {
         $request->validate([
@@ -82,7 +89,6 @@ class AuthController extends Controller
     public function getUserById($id)
     {
         $user = User::find($id);
-         
 
         return $user;
     }

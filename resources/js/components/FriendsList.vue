@@ -11,9 +11,9 @@
       <li
         v-for="friend in friends"
         :key="friend.id"
-        class="border-b flex items-center border-gray-500 text-center px-2 py-4 text-sm text-gray-300"
+        class="border-b flex items-center border-gray-600 text-center px-1 py-3 text-sm text-gray-300"
       >
-        <img :src="`https://picsum.photos/id/${friend.id}/200`" class="rounded-full h-16 w-1/5" alt="image" />
+        <img :src="`https://picsum.photos/id/${friend.id}/100`" class="rounded-full h-12" alt="image" />
         <router-link
           tag="span"
           class="font-bold text-gray-400 mx-2 cursor-pointer"

@@ -26,6 +26,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
         Route::get('user/{id}', 'AuthController@getUserById');
+        Route::get('users', 'AuthController@index')->name('users');
     });
 });
 
@@ -39,8 +40,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('/post/{id}', 'PostController@destroy');
 
     Route::post('user/{id}/follow', 'FollowsController@store');
-    Route::get('user/{id}/follow','FollowsController@isFollowed');
-    Route::get('friends','FollowsController@friends');
+    Route::get('user/{id}/follow', 'FollowsController@isFollowed');
+    Route::get('friends', 'FollowsController@friends');
 });
 
 Route::fallback(function () {

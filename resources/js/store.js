@@ -88,7 +88,6 @@ const actions = {
             axios({ url: "/api/auth/login", data: user, method: "POST" })
                 .then(res => {
                     const token = res.data.access_token;
-                    const user = JSON.parse(res.config.data);
                     localStorage.setItem("token", token);
                     axios.defaults.headers.common["Authorization"] = token;
                     commit("auth_success", token);

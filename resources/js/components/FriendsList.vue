@@ -6,14 +6,18 @@
     </div>
     <ul
       v-if="friends.length > 0"
-      class="mx-auto border-t border-r border-l rounded border-gray-600 w-5/6"
+      class="mx-auto border rounded border-gray-600 w-5/6 h-64 overflow-auto style-3"
     >
       <li
         v-for="friend in friends"
         :key="friend.id"
-        class="border-b flex items-center border-gray-600 text-center px-1 py-3 text-sm text-gray-300"
+        class="border flex items-center border-gray-600 text-center px-1 py-3 text-sm text-gray-300"
       >
-        <img :src="`https://picsum.photos/id/${friend.id}/100`" class="rounded-full h-12" alt="image" />
+        <img
+          :src="`https://picsum.photos/id/${friend.id}/100`"
+          class="rounded-full h-12"
+          alt="image"
+        />
         <router-link
           tag="span"
           class="font-bold text-gray-400 mx-2 cursor-pointer"
@@ -37,5 +41,19 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.style-3::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #1a202c;
+}
+
+.style-3::-webkit-scrollbar {
+  width: 6px;
+  background-color: #1a202c;
+}
+
+.style-3::-webkit-scrollbar-thumb {
+  background-color: #718096;
+  border-radius: 6px;
+}
 </style>

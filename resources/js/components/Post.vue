@@ -1,7 +1,7 @@
 <template>
-  <div class="lg:w-2/3 mx-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-10">
-    <div class="px-6 py-4">
-      <div class="flex items-center">
+  <div class="lg:w-2/3 mx-2 mb-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-8">
+    <div class="px-6 py-2">
+      <div class="flex items-center mt-1">
         <img
           :src="`https://picsum.photos/id/${authorId}/100`"
           class="rounded-full h-12 mr-2"

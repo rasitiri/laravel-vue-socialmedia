@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="lg:mx-auto mt-3 lg:w-2/3 w-auto mx-4">
+    <form class="lg:mx-auto lg:w-2/3 w-auto mx-4">
       <div class="flex items-center border-b border-teal-500 py-2">
         <textarea
           class="appearance-none bg-transparent border-none w-full text-gray-300 mr-3 py-1 px-2 leading-tight focus:outline-none text-sm"

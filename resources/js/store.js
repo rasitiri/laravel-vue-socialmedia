@@ -168,8 +168,11 @@ const actions = {
                     Authorization: "Bearer " + token
                 }
             })
-                .then(res => commit("posts_success", res.data))
-                .catch(err => console.log("error posts:", err));
+                .then(res => {
+                    console.log("friends posts => ",res)
+                    commit("posts_success", res.data)
+                })
+                .catch(err => console.log("error friends posts:", err.response));
         });
     },
     profilePosts({ commit }) {

@@ -75,4 +75,13 @@ class User extends Authenticatable implements Searchable
         $url = route('users', $this->id);
         return new SearchResult($this, $this->name, $url);
     }
+
+    public function timeline()
+    {
+        $friends = $this->follows()->pluck('id');
+        return Post::whereIn('user_id', $friends)
+            ->orWhere('user_id', $this->id)
+            ->orderByDesc('id')
+            ->get();
+    }
 }

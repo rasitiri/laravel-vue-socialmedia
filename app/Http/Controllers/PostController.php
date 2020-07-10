@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index()
     {
-        return Post::orderBy('created_at', 'desc')->with('user')->get();
+        $friendsId = Auth::user()->follows()->pluck('id');
+        $authUserId = Auth()->user()->id;
+
+        return Post::whereIn('user_id', $friendsId)
+            ->orWhere('user_id', $authUserId)
+            ->with('user')
+            ->orderBy('created_at','desc')
+            ->get();
     }
 
     public function store()

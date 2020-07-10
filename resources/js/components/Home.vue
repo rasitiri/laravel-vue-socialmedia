@@ -2,6 +2,7 @@
   <div class="container mx-auto grid grid-cols-3 gap-4">
     <div class="lg:col-span-2 col-span-3 py-3">
       <publish></publish>
+      
       <post
         v-for="post in posts"
         :key="post.id"

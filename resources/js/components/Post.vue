@@ -1,11 +1,18 @@
 <template>
   <div class="lg:w-2/3 mx-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-10">
     <div class="px-6 py-4">
-      <router-link
-        tag="span"
-        class="font-bold text-xl text-gray-400 cursor-pointer"
-        :to="{path:'/user/'+authorId}"
-      >{{author}}</router-link>
+      <div class="flex items-center">
+        <img
+          :src="`https://picsum.photos/id/${authorId}/100`"
+          class="rounded-full h-12 mr-2"
+          alt="image"
+        />
+        <router-link
+          tag="span"
+          class="font-bold text-xl text-gray-400 cursor-pointer"
+          :to="authorId === authUser.id ? {path:'/profile'} :{path:'/user/'+authorId} "
+        >{{author}}</router-link>
+      </div>
       <p class="text-gray-300 mt-4 mb-2 text-sm">{{body}}</p>
       <span class="flex justify-end">
         <router-link
@@ -50,6 +57,11 @@ export default {
   props: ["body", "author", "postedTime", "postId", "authorId"],
   components: {
     PostDetail
+  },
+  computed: {
+    authUser() {
+      return this.$store.getters.getUser;
+    }
   },
   methods: {
     loggedInUser() {

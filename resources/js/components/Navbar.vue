@@ -39,7 +39,7 @@
         class="w-full flex-grow sm:flex sm:items-center sm:w-auto"
       >
         <div class="text-sm flex sm:flex-grow">
-          <div class="relative lg:mx-auto lg:m-0 mt-3">
+          <div class="relative mx-auto lg:mx-auto lg:m-0 mt-3">
             <input
               v-model="query"
               type="text"
@@ -53,6 +53,7 @@
                 />
               </svg>
             </div>
+
             <div class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-4">
               <ul v-if="results.length > 0 && query">
                 <li
@@ -66,7 +67,7 @@
                     class="rounded-full mx-1"
                   />
                   <router-link
-                    :to="{path:'/user/'+result.searchable.id}"
+                    :to="authUser.id === result.searchable.id ? {path:'/profile'} :{path:'/user/'+result.searchable.id}"
                     tag="a"
                     class="text-gray-300 px-3 py-3 flex items-center cursor-pointer transition ease-in-out duration-150"
                   >{{result.searchable.name}}</router-link>
@@ -75,28 +76,32 @@
             </div>
           </div>
         </div>
-        <div v-if="!isLoggedIn">
-          <router-link
-            to="/login"
-            tag="span"
-            class="no-underline block mt-4 mx-1 text-sm sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
-          >Login</router-link>
-          <router-link
-            to="/register"
-            tag="span"
-            class="no-underline block mt-4 mx-1 text-sm sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
-          >Register</router-link>
+        <div class="flex" v-if="!isLoggedIn">
+          <div class="mx-auto lg:ml-auto">
+            <router-link
+              to="/login"
+              tag="span"
+              class="no-underline block mt-4 mx-1 text-sm sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
+            >Login</router-link>
+            <router-link
+              to="/register"
+              tag="span"
+              class="no-underline block mt-4 mx-1 text-sm sm:inline-block sm:mt-0 text-teal-lighter text-white hover:text-gray-300 cursor-pointer"
+            >Register</router-link>
+          </div>
         </div>
-        <div v-if="isLoggedIn">
-          <router-link
-            to="/profile"
-            tag="span"
-            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-sm text-white hover:text-gray-300 cursor-pointer"
-          >{{userEmail}}</router-link>
-          <a
-            @click="logout"
-            class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white text-sm hover:text-gray-300 cursor-pointer"
-          >Logout</a>
+        <div class="flex" v-if="isLoggedIn">
+          <div class="mx-auto lg:ml-auto">
+            <router-link
+              to="/profile"
+              tag="span"
+              class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-sm text-white hover:text-gray-300 cursor-pointer"
+            >{{authUser.email}}</router-link>
+            <a
+              @click="logout"
+              class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white text-sm hover:text-gray-300 cursor-pointer"
+            >Logout</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -116,8 +121,8 @@ export default {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
     },
-    userEmail() {
-      return this.$store.getters.getUser.email;
+    authUser() {
+      return this.$store.getters.getUser;
     }
   },
   watch: {

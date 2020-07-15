@@ -12,7 +12,9 @@ class AuthController extends Controller
 {
     public function index(Request $request)
     {
-        $results = (new Search())->registerModel(User::class, ['name'])->search($request->input('query'));
+        $results = (new Search())->registerModel(User::class, ['name'])
+            ->search($request->input('query'));
+
         return response()->json($results);
     }
 
@@ -20,12 +22,14 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'surname' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
         ]);
 
         $user = new User([
             'name' => $request->name,
+            'surname' => $request->surname,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
@@ -91,5 +95,22 @@ class AuthController extends Controller
         $user = User::find($id);
 
         return $user;
+    }
+
+    public function edit($id, Request $request)
+    {
+        $user = User::find($id);
+
+        //need to refactor
+        $user->name = $request->name ? $request->name : $user->getOriginal('name');
+        $user->surname = $request->surname ? $request->surname : $user->getOriginal('surname');
+        $user->email = $request->email ? $request->email : $user->getOriginal('email');
+        $user->bio = $request->bio ? $request->bio : $user->getOriginal('bio');
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Successfully updated.'
+        ]);
     }
 }

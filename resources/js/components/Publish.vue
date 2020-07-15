@@ -6,7 +6,7 @@
           class="appearance-none bg-transparent border-none w-full text-gray-300 mr-3 py-1 px-2 leading-tight focus:outline-none text-sm"
           type="text"
           rows="3"
-          v-model="body"
+          v-model.trim="body"
           @keyup="countCharacter()"
           placeholder="What's happening?"
         ></textarea>
@@ -42,25 +42,6 @@ export default {
     publish() {
       this.$store.dispatch("publish", this.body);
     },
-    // publish() {
-    //   const token = localStorage.getItem("token");
-    //   axios({
-    //     url: "/api/post",
-    //     method: "POST",
-    //     headers: {
-    //       Authorization: "Bearer " + token
-    //     },
-    //     data: {
-    //       body: this.body
-    //     }
-    //   })
-    //     .then(res => {
-    //       console.log("publish response:", res);
-    //       this.body = "";
-    //       window.location.reload();
-    //     })
-    //     .catch(err => console.log("publish error:", err.response));
-    // },
     countCharacter() {
       this.totalCharacter = this.body.length;
     }

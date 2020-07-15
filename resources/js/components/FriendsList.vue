@@ -6,7 +6,7 @@
     </div>
     <ul
       v-if="friends.length > 0"
-      class="mx-auto border rounded border-gray-600 w-5/6 h-64 overflow-auto style-3"
+      class="mx-auto border rounded border-gray-600 w-5/6 h-56 overflow-auto style-3"
     >
       <li
         v-for="friend in friends"
@@ -22,7 +22,7 @@
           tag="span"
           class="font-bold text-gray-400 mx-2 cursor-pointer"
           :to="{path:'/user/'+friend.id}"
-        >{{friend.name}}</router-link>
+        >{{friend.name}} {{friend.surname}}</router-link>
       </li>
     </ul>
   </div>

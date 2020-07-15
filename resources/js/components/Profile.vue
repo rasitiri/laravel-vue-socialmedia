@@ -4,8 +4,9 @@
       <user-card
         :isLoggedInUser="true"
         :userId="user.id"
-        :name="user.name"
+        :name="`${user.name} ${user.surname}`"
         :email="user.email"
+        :bio="user.bio"
         :joinedDate="user.created_at"
       ></user-card>
     </div>

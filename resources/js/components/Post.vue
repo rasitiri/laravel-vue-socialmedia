@@ -73,6 +73,7 @@ export default {
     },
     deletePost(postId) {
       this.$store.dispatch("deletePost", postId);
+      window.location.reload()
     }
   }
 };

@@ -188,7 +188,7 @@ const actions = {
                 }
             })
                 .then(res => commit("profile_posts_success", res.data))
-                .catch(err => console.log("error profile posts:", err));
+                .catch(err => console.log("error profile posts:", err.response));
         });
     },
     getPostById({ commit }, id) {
@@ -200,7 +200,7 @@ const actions = {
                 headers: { Authorization: "Bearer " + token }
             })
                 .then(res => commit("get_by_id_success", res.data))
-                .catch(err => console.log(err));
+                .catch(err => console.log(err.response));
         });
     },
     getUserById({ commit }, id) {
@@ -212,7 +212,7 @@ const actions = {
                 headers: { Authorization: "Bearer " + token }
             })
                 .then(res => commit("get_user_by_id_success", res.data))
-                .catch(err => console.log(err));
+                .catch(err => console.log(err.response));
         });
     },
     getUsersPost({ commit }, id) {
@@ -224,7 +224,7 @@ const actions = {
                 headers: { Authorization: "Bearer " + token }
             })
                 .then(res => commit("get_users_post_success", res.data))
-                .catch(err => console.log(err));
+                .catch(err => console.log(err.response));
         });
     },
     deletePost({ commit }, id) {
@@ -241,7 +241,7 @@ const actions = {
                     console.log(res);
                     commit("delete_post", res.data.data);
                 })
-                .catch(err => console.log(err));
+                .catch(err => console.log(err.response));
         });
     },
     follow({ commit }, id) {
@@ -256,7 +256,7 @@ const actions = {
             .then(res => {
                 console.log("follow response:", res);
             })
-            .catch(err => console.log("follow error:", err));
+            .catch(err => console.log("follow error:", err.response));
     },
     isFollow({ commit }, id) {
         const token = localStorage.getItem("token");

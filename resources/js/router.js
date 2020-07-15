@@ -6,6 +6,8 @@ import Home from "./components/Home.vue";
 import Profile from "./components/Profile";
 import PostDetail from "./components/PostDetail.vue";
 import User from "./components/User.vue";
+import SearchResult from "./components/SearchResult.vue";
+import EditProfile from "./components/EditProfile.vue";
 
 import store from "./store";
 
@@ -62,6 +64,22 @@ const router = new VueRouter({
             path: "/user/:id",
             name: "user",
             component: User,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/search/query/:query",
+            name: "search",
+            component: SearchResult,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/edit-profile",
+            name: "edit-profile",
+            component: EditProfile,
             meta: {
                 requiresAuth: true
             }

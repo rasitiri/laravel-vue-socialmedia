@@ -21,18 +21,31 @@
       <div class="w-full md:w-1/2 px-3">
         <label
           class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
+          for="surname"
+        >Surname</label>
+        <input
+          class="shadow appearance-none block w-full focus:text-gray-700 text-gray-300 text-sm bg-gray-800 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="surname"
+          type="text"
+          v-model="surname"
+          required
+        />
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3">
+        <label
+          class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
           for="email"
         >Email</label>
         <input
-          class="shadow appearance-none block w-full focus:text-gray-700 text-gray-300 text-sm bg-gray-800 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="shadow appearance-none block w-full bg-gray-800 focus:text-gray-700 text-gray-300 text-sm border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="email"
           type="email"
           v-model="email"
           required
         />
       </div>
-    </div>
-    <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full px-3">
         <label
           class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
@@ -78,6 +91,7 @@ export default {
   data() {
     return {
       name: "",
+      surname: "",
       email: "",
       password: "",
       password_confirmation: ""
@@ -87,6 +101,7 @@ export default {
     registerMethod() {
       const data = {
         name: this.name,
+        surname: this.surname,
         email: this.email,
         password: this.password,
         password_confirmation: this.password_confirmation

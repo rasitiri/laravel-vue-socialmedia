@@ -11,6 +11,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'AuthController@user');
         Route::get('user/{id}', 'AuthController@getUserById');
         Route::get('users', 'AuthController@index')->name('users');
+        Route::patch('user/{id}', 'AuthController@edit');
     });
 });
 

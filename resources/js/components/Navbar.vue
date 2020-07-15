@@ -41,18 +41,25 @@
         <div class="text-sm flex sm:flex-grow">
           <div class="relative mx-auto lg:mx-auto lg:m-0 mt-3">
             <input
-              v-model="query"
+              v-model.trim="query"
               type="text"
               class="mx-auto text-gray-300 bg-gray-800 text-sm rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline"
             />
-            <div class="absolute top-0">
-              <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24">
+            <router-link
+              tag="div"
+              :to="{path:query.length > 0 ? '/search/query/'+query :'/'}"
+              class="absolute top-0"
+            >
+              <svg
+                class="fill-current w-4 text-gray-500 mt-2 ml-2 cursor-pointer"
+                viewBox="0 0 24 24"
+              >
                 <path
                   class="heroicon-ui"
                   d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"
                 />
               </svg>
-            </div>
+            </router-link>
 
             <div class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-4">
               <ul v-if="results.length > 0 && query">
@@ -70,7 +77,7 @@
                     :to="authUser.id === result.searchable.id ? {path:'/profile'} :{path:'/user/'+result.searchable.id}"
                     tag="a"
                     class="text-gray-300 px-3 py-3 flex items-center cursor-pointer transition ease-in-out duration-150"
-                  >{{result.searchable.name}}</router-link>
+                  >{{result.searchable.name}}  {{result.searchable.surname}}</router-link>
                 </li>
               </ul>
             </div>
@@ -96,7 +103,7 @@
               to="/profile"
               tag="span"
               class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-sm text-white hover:text-gray-300 cursor-pointer"
-            >{{authUser.email}}</router-link>
+            >{{authUser.name}} {{authUser.surname}}</router-link>
             <a
               @click="logout"
               class="no-underline block mt-4 mx-1 sm:inline-block sm:mt-0 text-teal-lighter text-white text-sm hover:text-gray-300 cursor-pointer"
@@ -155,7 +162,7 @@ export default {
         }
       })
         .then(response => (this.results = response.data))
-        .catch(error => {});
+        .catch(error => console.log(error));
     }
   }
 };

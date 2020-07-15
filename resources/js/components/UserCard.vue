@@ -1,11 +1,13 @@
 <template>
   <div class="max-w-sm rounded overflow-hidden bg-gray-700 shadow-lg my-10">
-    <img class="w-full object-contain" :src="`https://picsum.photos/id/${userId}/400`" alt="user-profile-photo" />
+    <img
+      class="w-full object-contain"
+      :src="`https://picsum.photos/id/${userId}/400`"
+      alt="user-profile-photo"
+    />
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2 text-gray-400">{{name}}</div>
-      <p
-        class="text-gray-300 text-sm"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+      <p class="text-gray-300 text-sm">{{bio}}</p>
     </div>
     <div class="flex">
       <button
@@ -13,10 +15,12 @@
         class="mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-16 rounded-md"
         @click="follow()"
       >{{isFollow}}</button>
-      <button
+      <router-link
         v-if="isLoggedInUser"
+        tag="button"
+        to="/edit-profile"
         class="mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-16 rounded-md"
-      >Edit Profile</button>
+      >Edit Profile</router-link>
     </div>
     <div class="px-6 py-4 my-2 flex">
       <span
@@ -28,7 +32,7 @@
 
 <script>
 export default {
-  props: ["name", "email", "joinedDate", "isLoggedInUser", "userId"],
+  props: ["name", "email", "bio", "joinedDate", "isLoggedInUser", "userId"],
 
   methods: {
     follow() {
@@ -43,6 +47,7 @@ export default {
   },
   created() {
     this.$store.dispatch("isFollow", this.$props.userId);
+    this.$store.dispatch("user");
   }
 };
 </script>

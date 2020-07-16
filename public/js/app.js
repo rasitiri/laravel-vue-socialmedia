@@ -2037,6 +2037,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     edit: function edit() {
+      var _this = this;
+
       var token = localStorage.getItem("token");
       var name = this.name,
           surname = this.surname,
@@ -2052,7 +2054,7 @@ __webpack_require__.r(__webpack_exports__);
           Authorization: "Bearer " + token
         }
       }).then(function (res) {
-        return console.log("update res:", res);
+        _this.$router.push("/profile");
       })["catch"](function (err) {
         return console.log("update err:", err.response);
       });
@@ -2469,6 +2471,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PostDetail__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostDetail */ "./resources/js/components/PostDetail.vue");
+//
+//
 //
 //
 //
@@ -25831,7 +25835,7 @@ var render = function() {
             ],
             staticClass:
               "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-            attrs: { type: "text", placeholder: "Jane Doe", id: "name" },
+            attrs: { type: "text", placeholder: "Name", id: "name" },
             domProps: { value: _vm.name },
             on: {
               input: function($event) {
@@ -25872,7 +25876,7 @@ var render = function() {
             ],
             staticClass:
               "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-            attrs: { type: "text", placeholder: "Jane Doe", id: "surname" },
+            attrs: { type: "text", placeholder: "Surname", id: "surname" },
             domProps: { value: _vm.surname },
             on: {
               input: function($event) {
@@ -25913,7 +25917,7 @@ var render = function() {
             ],
             staticClass:
               "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-            attrs: { type: "email", placeholder: "Jane Doe", id: "email" },
+            attrs: { type: "email", placeholder: "Email", id: "email" },
             domProps: { value: _vm.email },
             on: {
               input: function($event) {
@@ -25954,7 +25958,7 @@ var render = function() {
             ],
             staticClass:
               "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-            attrs: { placeholder: "Jane Doe", id: "bio" },
+            attrs: { placeholder: "Biography", id: "bio" },
             domProps: { value: _vm.bio },
             on: {
               input: function($event) {

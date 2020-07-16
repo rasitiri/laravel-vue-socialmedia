@@ -5,7 +5,7 @@
       <input
         class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
         type="text"
-        placeholder="Jane Doe"
+        placeholder="Name"
         id="name"
         v-model="name"
       />
@@ -15,7 +15,7 @@
       <input
         class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
         type="text"
-        placeholder="Jane Doe"
+        placeholder="Surname"
         id="surname"
         v-model="surname"
       />
@@ -25,7 +25,7 @@
       <input
         class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
         type="email"
-        placeholder="Jane Doe"
+        placeholder="Email"
         id="email"
         v-model="email"
       />
@@ -34,7 +34,7 @@
       <label for="bio" class="mr-6 text-gray-200 capitalize">bio</label>
       <textarea
         class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-        placeholder="Jane Doe"
+        placeholder="Biography"
         id="bio"
         v-model="bio"
       ></textarea>
@@ -77,7 +77,9 @@ export default {
             }
           }
         )
-        .then(res => console.log("update res:", res))
+        .then(res => {
+          this.$router.push("/profile");
+        })
         .catch(err => console.log("update err:", err.response));
     }
   }

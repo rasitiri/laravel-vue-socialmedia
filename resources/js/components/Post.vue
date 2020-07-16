@@ -1,5 +1,7 @@
 <template>
-  <div class="lg:w-2/3 mx-2 mb-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-8">
+  <div
+    class="lg:w-2/3 mx-2 mb-2 w-auto bg-gray-700 rounded overflow-hidden shadow-lg lg:mx-auto mt-8"
+  >
     <div class="px-6 py-2">
       <div class="flex items-center mt-1">
         <img
@@ -73,7 +75,7 @@ export default {
     },
     deletePost(postId) {
       this.$store.dispatch("deletePost", postId);
-      window.location.reload()
+      window.location.reload();
     }
   }
 };

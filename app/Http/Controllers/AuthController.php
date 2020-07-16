@@ -106,7 +106,7 @@ class AuthController extends Controller
         $user->surname = $request->surname ? $request->surname : $user->getOriginal('surname');
         $user->email = $request->email ? $request->email : $user->getOriginal('email');
         $user->bio = $request->bio ? $request->bio : $user->getOriginal('bio');
-        
+
         $user->save();
 
         return response()->json([
